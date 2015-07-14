@@ -1,15 +1,18 @@
-package com.tw.core;
+package com.tw.core.user;
+
+import org.springframework.stereotype.Service;
 
 /**
  * Created by Vivi on 7/8/15.
  */
+@Service
 public class User {
 
-    int id;
-    String name;
-    String sex;
-    String email;
-    int age;
+    private int id;
+    private String name;
+    private String sex;
+    private String email;
+    private int age;
 
     public int getId(){
         return id;

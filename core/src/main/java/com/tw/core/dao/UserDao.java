@@ -1,29 +1,33 @@
-package com.tw.core;
+package com.tw.core.dao;
 
+import com.tw.core.user.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by Vivi on 7/9/15.
  */
+@Service
 public class UserDao {
 
-    Configuration cfg = new Configuration().configure();
-    SessionFactory factory = cfg.buildSessionFactory();
+    @Autowired
+    private User user;
+
+    private Configuration cfg = new Configuration().configure();
+    private SessionFactory factory = cfg.buildSessionFactory();
 
     public void createUser(){
         List<User> userList = getUsers();
         for(int i=userList.size()-1;i>=0;i--) {
-            User user = userList.get(i);
-            deleteUser(user.getId());
+            deleteUser(userList.get(i).getId());
         }
-        User user = new User();
         user.setName("张三");
         user.setSex("男");
         user.setEmail("zhangsan@gmail.com");
@@ -38,7 +42,7 @@ public class UserDao {
 
     public User getUserById(int userId){
         List<User> userList = new ArrayList<User>();
-        User user = new User();
+        //User user = new User();
         Session session = null;
 
         try {

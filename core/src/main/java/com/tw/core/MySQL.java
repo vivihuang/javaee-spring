@@ -3,10 +3,12 @@ package com.tw.core;
 /**
  * Created by Vivi on 7/7/15.
  */
+import com.tw.core.user.User;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-//import com.tw.core.User;
+//import com.tw.core.user;
 
 public class MySQL {
     // JDBC driver name and database URL

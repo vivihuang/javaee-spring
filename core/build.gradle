@@ -8,7 +8,7 @@ buildscript {
     dependencies {
         //classpath 'com.h2database:h2:1.3.170'
         classpath "org.flywaydb:flyway-gradle-plugin:3.2.1"
-        classpath "org.hibernate:hibernate-core:4.3.10.Final"
+        //classpath "org.hibernate:hibernate-core:4.3.10.Final"
     }
 }
 

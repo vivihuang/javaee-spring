@@ -13,8 +13,14 @@
 <head>
     <title></title>
 </head>
+
+<script language=JavaScript type=text/JavaScript>
+
+</script>
+
 <body>
-<form method="POST" action='add' name="add">
+<a href="/web/logout">退出登录</a>
+<form method="POST" action="/web/users">
   姓名 : <input
         type="text" name="name"
         value="<c:out value="${user.name}" />"/> <br/>

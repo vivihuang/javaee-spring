@@ -16,12 +16,8 @@
 
 <body>
 
-<%--<%--%>
-  <%--//List<User> userList = new ArrayList<User>();--%>
-  <%--//request.setAttribute("userList",userList);--%>
-<%--%>--%>
-
-<a href="user.html">添加</a>
+<a href="/web/logout">退出登录</a>
+<a href="/web/users/add">添加</a>
 <%--<c:out value="hi"/><br>--%>
 <table border="4">
   <tr align="center">
@@ -40,8 +36,8 @@
       <td><c:out value="${item.sex}" /></td>
       <td><c:out value="${item.email}" /></td>
       <td><c:out value="${item.age}" /></td>
-      <td><a href="update?userId=<c:out value="${item.id}"/>">修改</a></td>
-      <td><a href="delete?userId=<c:out value="${item.id}"/>">删除</a></td>
+        <td><a href="/web/users/update/<c:out value="${item.id}"/>">修改</a></td>
+      <td><a href="/web/users/delete/<c:out value="${item.id}" />">删除</a></td>
     </tr>
   </c:forEach>
 </table>
