@@ -33,8 +33,10 @@ public class CookieService {
 
     public String checkURLCookie(HttpServletRequest request) {return selectURLCookie(request);}
 
-    public void deleteURLCookie(){
+    public void deleteURLCookie(HttpServletResponse response){
         Cookie cookie = new Cookie("currentURL",null);
         cookie.setMaxAge(0);
+        cookie.setPath("/");
+        response.addCookie(cookie);
     }
 }

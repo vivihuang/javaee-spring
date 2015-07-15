@@ -33,7 +33,7 @@ public class LoginService {
 
     }
 
-    public ModelAndView userLoginCheck(HttpServletRequest request) {
+    public ModelAndView userLoginCheck(HttpServletRequest request,HttpServletResponse response) {
         String inputName = request.getParameter("inputName");
         String inputPassword = request.getParameter("inputPassword");
         String inputEncodePassword = md5Util.MD5Encode(inputPassword);
@@ -44,8 +44,8 @@ public class LoginService {
         if (inputName.equals(adminName) && inputEncodePassword.equals(adminEncodePassword)) {
             request.getSession().setAttribute("loginStatus", "true");
             String currentURL = cookieService.checkURLCookie(request);
-            cookieService.deleteURLCookie();
-            if (currentURL.isEmpty()) {
+            cookieService.deleteURLCookie(response);
+            if (currentURL == null || currentURL.isEmpty()) {
                 modelAndView = userService.showUsers();
             }
             else {
@@ -69,8 +69,9 @@ public class LoginService {
         }
     }
 
-    public ModelAndView userLogout(HttpServletRequest request) {
+    public ModelAndView userLogout(HttpServletRequest request,HttpServletResponse response) {
         request.getSession().setAttribute("loginStatus", "false");
+        cookieService.deleteURLCookie(response);
         modelAndView.setViewName("/login");
         return modelAndView;
     }

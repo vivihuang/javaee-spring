@@ -26,13 +26,13 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login")
-    public ModelAndView loginController(HttpServletRequest request){
-        return loginService.userLoginCheck(request);
+    public ModelAndView loginController(HttpServletRequest request,HttpServletResponse response){
+        return loginService.userLoginCheck(request,response);
     }
 
     @RequestMapping("/logout")
-    public ModelAndView logoutController(HttpServletRequest request) {
-        return loginService.userLogout(request);
+    public ModelAndView logoutController(HttpServletRequest request,HttpServletResponse response) {
+        return loginService.userLogout(request,response);
     }
 
     @RequestMapping("/encode")
