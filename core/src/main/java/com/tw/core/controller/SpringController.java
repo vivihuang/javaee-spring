@@ -28,15 +28,5 @@ public class SpringController {
 //        return new ModelAndView("index");
 //    }
 
-    @RequestMapping("/index")
-    public ModelAndView indexPage(HttpServletRequest request){
-        if (loginService.isLogged(request)) {
-            modelAndView.setViewName("index");
-            modelAndView.addObject("userList",userDao.getUsers());
-            return modelAndView;
-        }
-        else {
-            return new ModelAndView("login");
-        }
-    }
+
 }

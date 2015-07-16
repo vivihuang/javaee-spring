@@ -1,4 +1,4 @@
-package com.tw.core.user;
+package com.tw.core.entity;
 
 import org.springframework.stereotype.Service;
 

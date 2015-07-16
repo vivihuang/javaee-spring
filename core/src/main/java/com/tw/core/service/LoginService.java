@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -27,12 +26,6 @@ public class LoginService {
     @Autowired
     private CookieService cookieService;
 
-    public void setSession(HttpServletRequest request){
-        String loginStatus = "false";
-        request.getSession().setAttribute("loginStatus",loginStatus);
-
-    }
-
     public ModelAndView userLoginCheck(HttpServletRequest request,HttpServletResponse response) {
         String inputName = request.getParameter("inputName");
         String inputPassword = request.getParameter("inputPassword");
@@ -53,37 +46,16 @@ public class LoginService {
             }
         }
         else {
-            request.getSession().setAttribute("loginStatus", "false");
             modelAndView.setViewName("login");
         }
         return modelAndView;
     }
 
-    public boolean isLogged(HttpServletRequest request) {
-        String loginStatus = (String)request.getSession().getAttribute("loginStatus");
-        if (loginStatus == "true") {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
     public ModelAndView userLogout(HttpServletRequest request,HttpServletResponse response) {
-        request.getSession().setAttribute("loginStatus", "false");
+        request.getSession().setAttribute("loginStatus", null);
         cookieService.deleteURLCookie(response);
         modelAndView.setViewName("/login");
         return modelAndView;
     }
 
-    public ModelAndView login2Encode(HttpServletRequest request) {
-        String loginStatus = (String)request.getSession().getAttribute("loginStatus");
-        if (loginStatus == "true") {
-            modelAndView.setViewName("encode");
-        }
-        else {
-            modelAndView.setViewName("login");
-        }
-        return modelAndView;
-    }
 }

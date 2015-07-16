@@ -5,7 +5,7 @@
 
 <hibernate-mapping package="com.tw.core">
 
-    <class name="com.tw.core.user.User" table="people">
+    <class name="com.tw.core.entity.User" table="people">
         <id name="id" column="id">
             <generator class="native" />
         </id>

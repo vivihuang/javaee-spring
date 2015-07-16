@@ -1,6 +1,6 @@
 package com.tw.core.dao;
 
-import com.tw.core.user.User;
+import com.tw.core.entity.User;
 import org.hibernate.Session;
 
 import java.sql.*;

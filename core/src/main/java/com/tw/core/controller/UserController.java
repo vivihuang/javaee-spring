@@ -21,8 +21,8 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView userPage(HttpServletRequest request,HttpServletResponse response) {
-        return userService.userPage(request,response);
+    public ModelAndView userPage() {
+        return userService.userPage();
     }
 
     @RequestMapping(value = "/add",method = RequestMethod.GET)

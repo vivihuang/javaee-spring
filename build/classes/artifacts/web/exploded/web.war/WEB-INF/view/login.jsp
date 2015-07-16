@@ -6,8 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="javax.servlet.http.*" %>
-<%@ page import="com.tw.core.util.MD5Util" %>
 <jsp:useBean id='MD5' scope='request' class='com.tw.core.util.MD5Util'/>
 <html>
 <head>
