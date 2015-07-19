@@ -17,8 +17,7 @@ public class CookieService {
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie:cookies) {
             if (cookie.getName().equals("currentURL")) {
-                return cookie.getValue().substring(4);
-                //return cookie.getValue();
+                return cookie.getValue();
             }
         }
         return null;
@@ -30,8 +29,6 @@ public class CookieService {
         cookie.setPath("/");
         response.addCookie(cookie);
     }
-
-    public String checkURLCookie(HttpServletRequest request) {return selectURLCookie(request);}
 
     public void deleteURLCookie(HttpServletResponse response){
         Cookie cookie = new Cookie("currentURL",null);

@@ -7,5 +7,79 @@
     </database-info>
     <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
     <schema name="" catalog="gym"/>
+    <table name="course" schema="" catalog="gym" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="course_name" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="employee_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="course_ibfk_1" columns="employee_id" ref-table="employee" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="customer_course_ibfk_2" table="customer_course" schema="" catalog="gym" columns="course_id"/>
+      <exported-key name="date_course_ibfk_1" table="date_course" schema="" catalog="gym" columns="course_id"/>
+    </table>
+    <table name="customer" schema="" catalog="gym" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="customer_name" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="employee_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="customer_ibfk_1" columns="employee_id" ref-table="employee" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="customer_course_ibfk_1" table="customer_course" schema="" catalog="gym" columns="customer_id"/>
+    </table>
+    <table name="customer_course" schema="" catalog="gym" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="customer_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="course_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="customer_course_ibfk_1" columns="customer_id" ref-table="customer" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="customer_course_ibfk_2" columns="course_id" ref-table="course" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="date_course" schema="" catalog="gym" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="date" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="course_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="date_course_ibfk_1" columns="course_id" ref-table="course" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="employee" schema="" catalog="gym" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="employee_name" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="role" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="course_ibfk_1" table="course" schema="" catalog="gym" columns="employee_id"/>
+      <exported-key name="customer_ibfk_1" table="customer" schema="" catalog="gym" columns="employee_id"/>
+      <exported-key name="user_ibfk_1" table="user" schema="" catalog="gym" columns="employee_id"/>
+    </table>
+    <table name="people" schema="" catalog="gym" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="sex" sqlType="VARCHAR" precision="2" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="age" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="schema_version" schema="" catalog="gym" type="TABLE">
+      <column name="version_rank" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="installed_rank" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="version" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="type" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="script" sqlType="VARCHAR" precision="1000" scale="0" nullable="false" jdbcType="12"/>
+      <column name="checksum" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="installed_by" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="installed_on" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="execution_time" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="success" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <primary-key name="PRIMARY" columns="version"/>
+      <index name="schema_version_ir_idx" unique="false" columns="installed_rank"/>
+      <index name="schema_version_s_idx" unique="false" columns="success"/>
+      <index name="schema_version_vr_idx" unique="false" columns="version_rank"/>
+    </table>
+    <table name="user" schema="" catalog="gym" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_name" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="employee_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="user_ibfk_1" columns="employee_id" ref-table="employee" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
   </data-source>
 </component>

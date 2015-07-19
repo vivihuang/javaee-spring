@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.hibernate:hibernate-validator-annotation-processor:5.2.0.CR1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-validator-annotation-processor/5.2.0.CR1/2f6f77fa4e255668069de25952851eb0cb5d38e5/hibernate-validator-annotation-processor-5.2.0.CR1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-validator-annotation-processor/5.2.0.CR1/3567ec9ba42c86be9285b52aedbff25c5324b5a5/hibernate-validator-annotation-processor-5.2.0.CR1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

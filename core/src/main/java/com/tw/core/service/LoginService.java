@@ -1,5 +1,6 @@
 package com.tw.core.service;
 
+import com.tw.core.dao.UserDao;
 import com.tw.core.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,36 +27,31 @@ public class LoginService {
     @Autowired
     private CookieService cookieService;
 
-    public ModelAndView userLoginCheck(HttpServletRequest request,HttpServletResponse response) {
+    @Autowired
+    private UserDao userDao;
+
+    public boolean userLoginCheck(HttpServletRequest request) {
         String inputName = request.getParameter("inputName");
         String inputPassword = request.getParameter("inputPassword");
-        String inputEncodePassword = md5Util.MD5Encode(inputPassword);
-        String adminName = "admin";
-        String adminPassword = "admin";
-        String adminEncodePassword = md5Util.MD5Encode(adminPassword);
+        //String inputEncodePassword = md5Util.MD5Encode(inputPassword);
+        String adminEncodePassword = userDao.getUserPassword(inputName);
 
-        if (inputName.equals(adminName) && inputEncodePassword.equals(adminEncodePassword)) {
+        if (adminEncodePassword != null && adminEncodePassword.equals(inputPassword)) {
             request.getSession().setAttribute("loginStatus", "true");
-            String currentURL = cookieService.checkURLCookie(request);
-            cookieService.deleteURLCookie(response);
-            if (currentURL == null || currentURL.isEmpty()) {
-                modelAndView = userService.showUsers();
-            }
-            else {
-                modelAndView.setViewName("redirect:"+currentURL);
-            }
+            return true;
         }
-        else {
-            modelAndView.setViewName("login");
-        }
-        return modelAndView;
+        return false;
     }
 
-    public ModelAndView userLogout(HttpServletRequest request,HttpServletResponse response) {
+    public void userLogout(HttpServletRequest request,HttpServletResponse response) {
         request.getSession().setAttribute("loginStatus", null);
         cookieService.deleteURLCookie(response);
-        modelAndView.setViewName("/login");
-        return modelAndView;
+    }
+
+    public String getCurrentURL(HttpServletRequest request,HttpServletResponse response){
+        String currentURL = cookieService.selectURLCookie(request);
+        cookieService.deleteURLCookie(response);
+        return currentURL;
     }
 
 }

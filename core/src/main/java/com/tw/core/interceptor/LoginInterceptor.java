@@ -14,6 +14,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handle) {
+
         if (request.getServletPath().startsWith("/login")) {
             return true;
         }
@@ -22,7 +23,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
         try {
-            Cookie cookie = new Cookie("currentURL", request.getRequestURI());
+            Cookie cookie = new Cookie("currentURL", request.getRequestURI().substring(4));
             cookie.setPath("/");
             response.addCookie(cookie);
             response.sendRedirect("/web/login");

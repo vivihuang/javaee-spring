@@ -2,56 +2,77 @@ package com.tw.core.entity;
 
 import org.springframework.stereotype.Service;
 
+import javax.persistence.*;
+
 /**
  * Created by Vivi on 7/8/15.
  */
 @Service
+@Entity
+@Table(name = "user")
 public class User {
-
+    @Id
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private int id;
-    private String name;
-    private String sex;
-    private String email;
-    private int age;
 
-    public int getId(){
-        return id;
+    @Column(name = "user_name")
+    private String name;
+
+    @Column(name = "password")
+    private String password;
+
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
+
+    public User() {
     }
 
-    public void setId(int id){
+    public User(String name,String password,Employee employee) {
+        this.name = name;
+        this.password = password;
+        this.employee = employee;
+    }
+
+    public User(int id,String user_name,String password,Employee employee) {
+        this.id = id;
+        this.name = user_name;
+        this.password = password;
+        this.employee = employee;
+    }
+
+
+    public void setId(int id) {
         this.id = id;
     }
 
-    public int getAge(){
-        return age;
-    }
-
-    public void setAge(int age){
-        this.age = age;
+    public int getId(){
+        return this.id;
     }
 
     public String getName(){
-        return name;
+        return this.name;
     }
 
     public void setName(String name){
         this.name = name;
     }
 
-    public String getSex(){
-        return sex;
+    public String getPassword(){
+        return this.password;
     }
 
-    public void setSex(String sex){
-        this.sex = sex;
+    public void setPassword(String password){
+        this.password=password;
     }
 
-    public String getEmail(){
-        return email;
+    public void setEmployee (Employee employee){
+        this.employee = employee;
     }
 
-    public void setEmail(String email){
-        this.email = email;
+    public Employee getEmployee(){
+        return this.employee;
     }
 
 }

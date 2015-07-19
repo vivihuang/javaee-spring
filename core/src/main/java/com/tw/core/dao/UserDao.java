@@ -1,5 +1,6 @@
 package com.tw.core.dao;
 
+import com.tw.core.entity.Employee;
 import com.tw.core.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,33 +23,14 @@ public class UserDao {
 
     private Configuration cfg = new Configuration().configure();
     private SessionFactory factory = cfg.buildSessionFactory();
-
-    public void createUser(){
-        List<User> userList = getUsers();
-        for(int i=userList.size()-1;i>=0;i--) {
-            deleteUser(userList.get(i).getId());
-        }
-        user.setName("张三");
-        user.setSex("男");
-        user.setEmail("zhangsan@gmail.com");
-        user.setAge(30);
-        addUser(user);
-        user.setName("李四");
-        user.setSex("男");
-        user.setEmail("lisi@gmail.com");
-        user.setAge(40);
-        addUser(user);
-    }
+    private List<User> userList = new ArrayList<User>();
 
     public User getUserById(int userId){
-        List<User> userList = new ArrayList<User>();
-        //User user = new User();
         Session session = null;
 
         try {
             session = factory.openSession();
-            session.beginTransaction();
-            Query query = session.createSQLQuery("select * from people WHERE id="+userId).addEntity(User.class);
+            Query query = session.createSQLQuery("select * from user WHERE id="+userId).addEntity(User.class);
             userList = query.list();
             user = userList.get(0);
         } catch (Exception e) {
@@ -66,19 +48,14 @@ public class UserDao {
     }
 
     public List<User> getUsers() {
-        List<User> userList = new ArrayList<User>();
-
         Session session = null;
         try {
             session = factory.openSession();
-            session.beginTransaction();
-            Query query = session.createSQLQuery("select * from people").addEntity(User.class);
-            userList = query.list();
+            String sql = "SELECT * from user";
+            userList = session.createSQLQuery(sql).addEntity(User.class).list();
         } catch (Exception e) {
-            //Handle errors for Class.forName
             e.printStackTrace();
         } finally {
-            //finally block used to close resources
             if (session != null) {
                 if (session.isOpen()) {
                     session.close();
@@ -89,17 +66,15 @@ public class UserDao {
     }
 
 
-    public void addUser(User user) {
-
+    public void addUser(String name,String password,Employee employee) {
         Session session = null;
-
+        user.setName(name);
+        user.setPassword(password);
+        user.setEmployee(employee);
         try {
-
             session = factory.openSession();
             session.beginTransaction();
-
             session.save(user);
-
             session.getTransaction().commit();
         }catch (Exception e) {
             //Handle errors for Class.forName
@@ -112,20 +87,16 @@ public class UserDao {
                 }
             }
         }
-
-        //factory.close();
     }
 
     public void deleteUser(int userId){
         Session session = null;
-        User user = new User();
-
         try {
-
             session = factory.openSession();
             session.beginTransaction();
 
             user.setId(userId);
+            user.setEmployee(null);
             session.delete(user);
             session.getTransaction().commit();
         }catch (Exception e) {
@@ -142,7 +113,9 @@ public class UserDao {
 
     }
 
-    public void updateUser(User user){
+    public void updateUser(User user,String name,String password){
+        user.setName(name);
+        user.setPassword(password);
         Session session = null;
 
         try {
@@ -161,5 +134,16 @@ public class UserDao {
                 }
             }
         }
+    }
+
+    public String getUserPassword(String userName){
+        List<User> userList = getUsers();
+        for (int i=0;i<userList.size();i++) {
+            user = userList.get(i);
+            if (userName.equals(user.getName())) {
+                return user.getPassword();
+            }
+        }
+        return null;
     }
 }
