@@ -20,15 +20,9 @@ public class Course {
     @Column(name = "course_name")
     private String name;
 
-    @ManyToOne(targetEntity = Coach.class,fetch=FetchType.EAGER)
+    @ManyToOne(targetEntity = Coach.class,fetch=FetchType.LAZY)
     @JoinColumn(name="employee_id")//加入一列作为外键
     private Coach coach;
-
-    @ManyToMany(fetch=FetchType.LAZY)
-    @JoinTable(name = "customer_course",
-            joinColumns = {@JoinColumn(name = "course_id")},
-            inverseJoinColumns = {@JoinColumn(name = "customer_id")})
-    private List<Customer> customerList;
 
     public void setId(int id) {
         this.id = id;
@@ -54,11 +48,4 @@ public class Course {
         return this.coach;
     }
 
-    public void setCustomerList(List<Customer> customers) {
-        this.customerList = customers;
-    }
-
-    public List<Customer> getCustomerList(){
-        return this.customerList;
-    }
 }

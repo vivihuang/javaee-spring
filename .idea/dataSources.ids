@@ -13,8 +13,7 @@
       <column name="employee_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="course_ibfk_1" columns="employee_id" ref-table="employee" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <exported-key name="customer_course_ibfk_2" table="customer_course" schema="" catalog="gym" columns="course_id"/>
-      <exported-key name="date_course_ibfk_1" table="date_course" schema="" catalog="gym" columns="course_id"/>
+      <exported-key name="date_course_customer_ibfk_1" table="date_course_customer" schema="" catalog="gym" columns="course_id"/>
     </table>
     <table name="customer" schema="" catalog="gym" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -22,22 +21,16 @@
       <column name="employee_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="customer_ibfk_1" columns="employee_id" ref-table="employee" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <exported-key name="customer_course_ibfk_1" table="customer_course" schema="" catalog="gym" columns="customer_id"/>
+      <exported-key name="date_course_customer_ibfk_2" table="date_course_customer" schema="" catalog="gym" columns="customer_id"/>
     </table>
-    <table name="customer_course" schema="" catalog="gym" type="TABLE">
-      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="customer_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="course_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="customer_course_ibfk_1" columns="customer_id" ref-table="customer" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="customer_course_ibfk_2" columns="course_id" ref-table="course" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-    </table>
-    <table name="date_course" schema="" catalog="gym" type="TABLE">
+    <table name="date_course_customer" schema="" catalog="gym" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="date" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
       <column name="course_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="customer_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="date_course_ibfk_1" columns="course_id" ref-table="course" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="date_course_customer_ibfk_1" columns="course_id" ref-table="course" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="date_course_customer_ibfk_2" columns="customer_id" ref-table="customer" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
     <table name="employee" schema="" catalog="gym" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>

@@ -9,14 +9,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<script type="text/javascript" src="js/ShowAndHide.js"></script>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
 </head>
 <body>
-<form method="POST" action="/web/system/course">
+<form method="POST" action="/web/course">
   课程 : <input
         type="text" name="course_name"
         value="<c:out value="${course.name}" />"/> <br/>

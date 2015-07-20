@@ -2,6 +2,7 @@ package com.tw.core.controller;
 
 import com.tw.core.dao.CoachDao;
 import com.tw.core.dao.CourseDao;
+import com.tw.core.dao.CustomerDao;
 import com.tw.core.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 
 @Controller
-@RequestMapping(value = "/system/course")
+@RequestMapping
 public class CourseController {
 
     @Autowired
@@ -30,16 +31,19 @@ public class CourseController {
     @Autowired
     private CoachDao coachDao;
 
+    @Autowired
+    private CustomerDao customerDao;
+
     private ModelAndView modelAndView = new ModelAndView();
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/course",method = RequestMethod.GET)
     public ModelAndView showCoachCoursePage(){
         modelAndView.setViewName("/course");
         modelAndView.addObject("courseList",courseDao.getCourses());
         return modelAndView;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/course",method = RequestMethod.POST)
     public ModelAndView modifyCourse(HttpServletRequest request,HttpServletResponse response){
         courseService.editCourse(request,response);
         modelAndView.setViewName("/course");
@@ -47,14 +51,14 @@ public class CourseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/add",method = RequestMethod.GET)
+    @RequestMapping(value = "/course/add",method = RequestMethod.GET)
     public ModelAndView addCourse(){
         modelAndView.setViewName("modify_course");
         modelAndView.addObject("coachList",coachDao.getCoaches());
         return modelAndView;
     }
 
-    @RequestMapping(value = "/update/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/course/update/{id}",method = RequestMethod.GET)
     public ModelAndView updateCourse(@PathVariable("id")String courseId){
         modelAndView.setViewName("modify_course");
         modelAndView.addObject("course", courseDao.getCourseById(Integer.parseInt(courseId)));
@@ -62,10 +66,33 @@ public class CourseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/course/delete/{id}",method = RequestMethod.GET)
     public ModelAndView deleteCourse(@PathVariable("id")String courseId) {
         courseDao.deleteCourse(Integer.parseInt(courseId));
-        modelAndView.setViewName("redirect:/system/course");
+        modelAndView.setViewName("redirect:/course");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/course_arrangement",method = RequestMethod.GET)
+    public ModelAndView showCourseArrangement() {
+        modelAndView.setViewName("course_arrangement");
+        modelAndView.addObject("courseList", courseDao.getCourses());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/course_arrangement",method = RequestMethod.POST)
+    public ModelAndView editCourseArrangement(HttpServletRequest request){
+        courseService.editCourseArrangement(request);
+        modelAndView.setViewName("course_arrangement");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/course_arrangement/add",method = RequestMethod.GET)
+    public ModelAndView addCourseArrangement() {
+        modelAndView.setViewName("modify_course_arrangement");
+        modelAndView.addObject("dateCourse", null);
+        modelAndView.addObject("courseList",courseDao.getCourses());
+        modelAndView.addObject("customerList",customerDao.getCustomers());
         return modelAndView;
     }
 }

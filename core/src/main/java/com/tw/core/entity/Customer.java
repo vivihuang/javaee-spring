@@ -22,7 +22,7 @@ public class Customer {
     @Column(name = "customer_name")
     private String name;
 
-    @ManyToOne(fetch= FetchType.EAGER)
+    @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="employee_id")//加入一列作为外键
     private Coach coach;
 

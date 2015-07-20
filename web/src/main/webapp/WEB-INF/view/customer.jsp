@@ -15,7 +15,7 @@
 <body>
 
 <table border="2">
-  <a href="/web/system/customer/add">增加顾客信息</a>
+  <a href="/web/customer/add">增加顾客信息</a>
   <tr align="center">
     <td><c:out value="顾客姓名" /></td>
     <td><c:out value="私人教练" /></td>
@@ -33,9 +33,9 @@
           <%--<td><c:out value="${course.name}" /></td>--%>
           <%--</tr>--%>
         <%--</c:forEach>--%>
-      <td><a href="/web/system/customer/courses">显示课程表</a></td>
-      <td><a href="/web/system/customer/update/<c:out value="${customer.id}"/>">修改顾客信息</a></td>
-      <td><a href="/web/system/customer/delete/<c:out value="${customer.id}" />">删除顾客信息</a></td>
+      <td><a href="/web/customer/courses">显示课程表</a></td>
+      <td><a href="/web/customer/update/<c:out value="${customer.id}"/>">修改顾客信息</a></td>
+      <td><a href="/web/customer/delete/<c:out value="${customer.id}" />">删除顾客信息</a></td>
     </tr>
   </c:forEach>
 

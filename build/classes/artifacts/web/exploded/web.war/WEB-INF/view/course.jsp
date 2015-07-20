@@ -16,7 +16,7 @@
 <body>
 
 <table border="2">
-    <a href="/web/system/course/add">增加课程</a>
+    <a href="/web/course/add">增加课程</a>
     <tr align="center">
         <td><c:out value="课程" /></td>
         <td><c:out value="教练" /></td>
@@ -28,8 +28,8 @@
                 <%--<td><c:out value="${item.id} " /></td>--%>
             <td><c:out value="${course.name}" /></td>
             <td><c:out value="${course.coach.name}" /></td>
-            <td><a href="/web/system/course/update/<c:out value="${course.id}"/>">修改课程</a></td>
-            <td><a href="/web/system/course/delete/<c:out value="${course.id}" />">删除课程</a></td>
+            <td><a href="/web/course/update/<c:out value="${course.id}"/>">修改课程</a></td>
+            <td><a href="/web/course/delete/<c:out value="${course.id}" />">删除课程</a></td>
 
         </tr>
     </c:forEach>

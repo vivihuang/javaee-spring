@@ -43,6 +43,7 @@ public class LoginController {
     public ModelAndView loginPage(HttpServletRequest request,HttpServletResponse response){
         request.getSession().setAttribute("loginStatus", "true");
         return new ModelAndView("index");
+//        return new ModelAndView("calendar");
     }
 
 
@@ -54,8 +55,8 @@ public class LoginController {
                 modelAndView.setViewName("redirect:/index");
             }
             else {
-                modelAndView.setViewName("redirect:/coach");
-                //modelAndView.setViewName("redirect:" + currentURL);
+//                modelAndView.setViewName("redirect:/coach");
+                modelAndView.setViewName("redirect:" + currentURL);
             }
         }
         else {

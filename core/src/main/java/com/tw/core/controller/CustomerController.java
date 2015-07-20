@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  * Created by Vivi on 7/18/15.
  */
 @Controller
-@RequestMapping(value = "/system/customer")
+@RequestMapping(value = "/customer")
 public class CustomerController {
 
     @Autowired
@@ -44,7 +44,7 @@ public class CustomerController {
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView editCustomer(HttpServletRequest request){
         customerService.editCustomer(request);
-        modelAndView.setViewName("redirect:/system/customer");
+        modelAndView.setViewName("redirect:/customer");
         return modelAndView;
     }
 
@@ -68,7 +68,7 @@ public class CustomerController {
     public ModelAndView deleteCustomer(@PathVariable("id")String customerId) {
         customer = customerDao.getCustomerById(Integer.parseInt(customerId));
         customerDao.deleteCustomer(customerId);
-        modelAndView.setViewName("redirect:/system/customer");
+        modelAndView.setViewName("redirect:/customer");
         return modelAndView;
     }
 }

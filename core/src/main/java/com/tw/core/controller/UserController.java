@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 
 @Controller
-@RequestMapping(value = "/system/user")
+@RequestMapping(value = "//user")
 public class UserController {
 
     @Autowired
@@ -40,7 +40,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView editUser(HttpServletRequest request,HttpServletResponse response) {
         userService.editUser(request);
-        modelAndView.setViewName("redirect:/system/user");
+        modelAndView.setViewName("redirect://user");
         return modelAndView;
     }
 
@@ -61,7 +61,7 @@ public class UserController {
     @RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
     public ModelAndView deleteUser(@PathVariable("id")String userId) {
         userDao.deleteUser(Integer.parseInt(userId));
-        modelAndView.setViewName("redirect:/system/user");
+        modelAndView.setViewName("redirect://user");
         return modelAndView;
     }
 }

@@ -9,14 +9,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<script type="text/javascript" src="js/ShowAndHide.js"></script>
+<script type="text/javascript" src="/ShowAndHide.js"></script>
 <html>
 <head>
     <title></title>
 </head>
 
 <body>
-<form method="POST" action="/web/system/user">
+<form method="POST" action="/web/user">
   用户名 : <input
         type="text" name="name"
         value="<c:out value="${user.name}" />"/> <br/>

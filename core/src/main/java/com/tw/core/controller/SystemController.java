@@ -13,7 +13,7 @@ public class SystemController {
 
     private ModelAndView modelAndView = new ModelAndView();
 
-    @RequestMapping(value = "/system",method = RequestMethod.GET)
+    @RequestMapping(value = "/",method = RequestMethod.GET)
     public ModelAndView indexPage(){
         modelAndView.setViewName("redirect:index");
         return modelAndView;

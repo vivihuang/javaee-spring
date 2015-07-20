@@ -15,7 +15,7 @@
 <body>
 
 <table border="2">
-  <a href="/web/system/user/add">增加用户</a>
+  <a href="/web/user/add">增加用户</a>
   <tr align="center">
     <td><c:out value="用户名" /></td>
     <td><c:out value="密码" /></td>
@@ -28,8 +28,8 @@
       <td><c:out value="${user.name}" /></td>
       <td><c:out value="${user.password}" /></td>
       <td><c:out value="${user.employee.role}" /></td>
-      <td><a href="/web/system/user/update/<c:out value="${user.id}"/>">修改用户</a></td>
-      <td><a href="/web/system/user/delete/<c:out value="${user.id}" />">删除用户</a></td>
+      <td><a href="/web/user/update/<c:out value="${user.id}"/>">修改用户</a></td>
+      <td><a href="/web/user/delete/<c:out value="${user.id}" />">删除用户</a></td>
 
     </tr>
   </c:forEach>

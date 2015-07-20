@@ -15,7 +15,7 @@
     <title></title>
 </head>
 <body>
-<form method="POST" action="/web/system/customer">
+<form method="POST" action="/web/customer">
   顾客姓名 : <input
         type="text" name="name"
         value="<c:out value="${customer.name}" />"/> <br/>

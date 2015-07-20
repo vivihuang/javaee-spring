@@ -34,10 +34,8 @@ public class CourseDao {
             courseList = session.createSQLQuery(sql).addEntity(Course.class).list();
             course = courseList.get(0);
         } catch (Exception e) {
-            //Handle errors for Class.forName
             e.printStackTrace();
         } finally {
-            //finally block used to close resources
             if (session != null) {
                 if (session.isOpen()) {
                     session.close();
@@ -56,10 +54,8 @@ public class CourseDao {
             String sql = "SELECT * from course";
             courseList = session.createSQLQuery(sql).addEntity(Course.class).list();
         } catch (Exception e) {
-            //Handle errors for Class.forName
             e.printStackTrace();
         } finally {
-            //finally block used to close resources
             if (session != null) {
                 if (session.isOpen()) {
                     session.close();
@@ -76,15 +72,11 @@ public class CourseDao {
         try {
             session = factory.openSession();
             session.beginTransaction();
-
             session.save(course);
-
             session.getTransaction().commit();
         }catch (Exception e) {
-            //Handle errors for Class.forName
             e.printStackTrace();
         } finally {
-            //finally block used to close resources
             if (session != null) {
                 if (session.isOpen()) {
                     session.close();
@@ -102,10 +94,8 @@ public class CourseDao {
             session.update(course);
             session.getTransaction().commit();
         }catch (Exception e) {
-            //Handle errors for Class.forName
             e.printStackTrace();
         } finally {
-            //finally block used to close resources
             if (session != null) {
                 if (session.isOpen()) {
                     session.close();
@@ -125,10 +115,8 @@ public class CourseDao {
             session.delete(course);
             session.getTransaction().commit();
         }catch (Exception e) {
-            //Handle errors for Class.forName
             e.printStackTrace();
         } finally {
-            //finally block used to close resources
             if (session != null) {
                 if (session.isOpen()) {
                     session.close();
