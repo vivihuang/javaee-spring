@@ -3,6 +3,7 @@ package com.tw.core.controller;
 import com.tw.core.dao.CoachDao;
 import com.tw.core.dao.CourseDao;
 import com.tw.core.dao.CustomerDao;
+import com.tw.core.dao.DateRelationDao;
 import com.tw.core.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,9 @@ public class CourseController {
 
     @Autowired
     private CustomerDao customerDao;
+
+    @Autowired
+    private DateRelationDao dateRelationDao;
 
     private ModelAndView modelAndView = new ModelAndView();
 
@@ -76,23 +80,37 @@ public class CourseController {
     @RequestMapping(value = "/course_arrangement",method = RequestMethod.GET)
     public ModelAndView showCourseArrangement() {
         modelAndView.setViewName("course_arrangement");
-        modelAndView.addObject("courseList", courseDao.getCourses());
+        modelAndView.addObject("course_arrangement_list", dateRelationDao.getCourseArrangement());
         return modelAndView;
     }
 
     @RequestMapping(value = "/course_arrangement",method = RequestMethod.POST)
     public ModelAndView editCourseArrangement(HttpServletRequest request){
         courseService.editCourseArrangement(request);
-        modelAndView.setViewName("course_arrangement");
+        modelAndView.setViewName("redirect:/course_arrangement");
         return modelAndView;
     }
 
     @RequestMapping(value = "/course_arrangement/add",method = RequestMethod.GET)
     public ModelAndView addCourseArrangement() {
         modelAndView.setViewName("modify_course_arrangement");
-        modelAndView.addObject("dateCourse", null);
-        modelAndView.addObject("courseList",courseDao.getCourses());
-        modelAndView.addObject("customerList",customerDao.getCustomers());
+        modelAndView.addObject("dateRelation", null);
+        modelAndView.addObject("courseList", courseDao.getCourses());
+        modelAndView.addObject("customerList", customerDao.getCustomers());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/course_arrangement/update/{id}",method = RequestMethod.GET)
+    public ModelAndView updateCourseArrangement(@PathVariable("id")String arrangementId){
+        modelAndView.setViewName("modify_course_arrangement");
+        modelAndView.addObject("dateRelation",dateRelationDao.getCourseArrangementById(Integer.parseInt(arrangementId)));
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/course_arrangement/delete/{id}",method = RequestMethod.GET)
+    public ModelAndView deleteCourseArrangement(@PathVariable("id")String arrangementId) {
+        dateRelationDao.deleteCourseArrangement(Integer.parseInt(arrangementId));
+        modelAndView.setViewName("redirect:/course_arrangement");
         return modelAndView;
     }
 }

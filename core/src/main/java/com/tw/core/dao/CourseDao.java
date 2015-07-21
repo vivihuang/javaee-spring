@@ -1,6 +1,7 @@
 package com.tw.core.dao;
 
 import com.tw.core.entity.Course;
+import com.tw.core.entity.Customer;
 import com.tw.core.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -123,5 +124,49 @@ public class CourseDao {
                 }
             }
         }
+    }
+
+    public Course getPersonalCourseByCustomer(Customer customer){
+        int coachId = customer.getCoach().getId();
+        Session session = null;
+
+        try {
+            session = factory.openSession();
+            String sql = "SELECT * FROM course WHERE course_name='私教课' AND employee_id="+coachId;
+            courseList = session.createSQLQuery(sql).addEntity(Course.class).list();
+            if (courseList.size()==0) {
+                addPersonalCourseByCoach(coachId);
+                courseList = session.createSQLQuery(sql).addEntity(Course.class).list();
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                if (session.isOpen()) {
+                    session.close();
+                }
+            }
+        }
+        return courseList.get(0);
+    }
+
+    public void addPersonalCourseByCoach(int coachId) {
+        Session session = null;
+        try {
+            session = factory.openSession();
+            String sql = "INSERT INTO course VALUES (NULL ,'私教课',"+coachId+")";
+            session.beginTransaction();
+            session.save(sql);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (session != null) {
+                if (session.isOpen()) {
+                    session.close();
+                }
+            }
+        }
+
     }
 }

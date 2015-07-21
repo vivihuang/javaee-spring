@@ -27,7 +27,7 @@ public class Customer {
     private Coach coach;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "customer_course",
+    @JoinTable(name = "date_course_customer",
             joinColumns = {@JoinColumn(name = "customer_id")},
             inverseJoinColumns = {@JoinColumn(name = "course_id")})
     private List<Course> courseList;

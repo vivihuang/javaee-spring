@@ -1,3 +1,5 @@
+<%@ page import="com.tw.core.entity.DateRelation" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vivi
@@ -20,11 +22,26 @@
     <td><a href="/web/course_arrangement/add" >增加课程</a></td>
   </tr>
 
-  <table>
+  <table border="2">
     <tr>
-      <td>周一</td>
-
+      <td>日期</td>
+      <td>课程</td>
+      <td>教练</td>
+      <td>顾客</td>
+      <td colspan="2">操作</td>
     </tr>
+
+    <c:forEach items="${course_arrangement_list}" var="item" varStatus="status">
+      <%--<% SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yy-MM-dd");%>--%>
+      <tr>
+        <td><c:out value="${item.date}" /></td>
+        <td><c:out value="${item.course.name}" /></td>
+        <td><c:out value="${item.course.coach.name}" /></td>
+        <td><c:out value="${item.customer.name}" /></td>
+        <td><a href="/web/course_arrangement/update/<c:out value="${item.id}" />">修改课程</a></td>
+        <td><a href="/web/course_arrangement/delete/<c:out value="${item.id}" />">删除课程</a></td>
+      </tr>
+      </c:forEach>
   </table>
 
 </body>

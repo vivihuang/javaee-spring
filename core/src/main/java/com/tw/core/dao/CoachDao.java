@@ -1,6 +1,8 @@
 package com.tw.core.dao;
 
 import com.tw.core.entity.Coach;
+import com.tw.core.entity.Course;
+import com.tw.core.entity.Customer;
 import com.tw.core.entity.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -23,9 +25,11 @@ public class CoachDao {
 
     private Configuration cfg = new Configuration().configure();
     private SessionFactory factory = cfg.buildSessionFactory();
+    private List<Coach> coachList = new ArrayList<Coach>();
+    private List<Course> courseList = new ArrayList<Course>();
+    private List<Customer> customerList = new ArrayList<Customer>();
 
     public Coach getCoachById(int id) {
-        List<Coach> coachList = new ArrayList<Coach>();
         Session session = null;
 
         try {
@@ -68,6 +72,36 @@ public class CoachDao {
             }
         }
         return coachList;
+    }
+
+    public Coach getCoachByCourse(String courseId) {
+        Session session = null;
+        try {
+            session = factory.openSession();
+            String sql = "SELECT * FROM course WHERE id="+courseId;
+            courseList = session.createSQLQuery(sql).addEntity(Course.class).list();
+            coach = courseList.get(0).getCoach();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+        return coach;
+    }
+
+    public Coach getCoachByCustomer(String customerId) {
+        Session session = null;
+        try {
+            session = factory.openSession();
+            String sql = "SELECT * FROM customer WHERE id="+customerId;
+            customerList = session.createSQLQuery(sql).addEntity(Customer.class).list();
+            coach = customerList.get(0).getCoach();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+        return coach;
     }
 
 

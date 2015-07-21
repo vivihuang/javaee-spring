@@ -28,6 +28,12 @@ public class DateRelation {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    public void setDateRelation(Date date,Course course,Customer customer) {
+        this.date = date;
+        this.course = course;
+        this.customer = customer;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

@@ -3,6 +3,8 @@ package com.tw.core.entity;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Vivi on 7/16/15.
@@ -44,4 +46,5 @@ public class Employee {
     public String getRole(){
         return this.role;
     }
+
 }

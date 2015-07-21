@@ -3,6 +3,7 @@ package com.tw.core.entity;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +24,20 @@ public class Course {
     @ManyToOne(targetEntity = Coach.class,fetch=FetchType.LAZY)
     @JoinColumn(name="employee_id")//加入一列作为外键
     private Coach coach;
+
+    @ManyToMany(targetEntity = Customer.class,fetch = FetchType.LAZY)
+    @JoinTable(name = "date_course_customer",joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "customer_id"))
+    private List<Customer> customerList = new ArrayList<Customer>();
+
+    public Course() {
+    }
+
+    public Course(String name, Coach coach, List<Customer> customerList) {
+        this.name = name;
+        this.coach = coach;
+        this.customerList = customerList;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -46,6 +61,14 @@ public class Course {
 
     public Coach getCoach(){
         return this.coach;
+    }
+
+    public void setCustomerList(List<Customer> customerList) {
+        this.customerList = customerList;
+    }
+
+    public List<Customer> getCustomerList() {
+        return this.customerList;
     }
 
 }

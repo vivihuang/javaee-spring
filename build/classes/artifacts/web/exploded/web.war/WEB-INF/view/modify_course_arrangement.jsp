@@ -1,3 +1,7 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.tw.core.entity.Customer" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.tw.core.entity.Course" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vivi
@@ -17,59 +21,69 @@
     <script type="text/javascript">
         $(function() {
             $("#datepicker").datepicker({
-                dateFormat:'yymmdd',
+                dateFormat:'yy-mm-dd',
                 changeMonth : true,
                 changeYear : true
             });
         });
 
-        function showCoachName(select) {
-            var name = $('#course_select').find("option:selected").attr("name");
-            $("#coach_name").val(name);
+        function showPublicCoachName() {
+            var name = $('#public_course_select').find("option:selected").attr("name");
+            $("#public_coach_name").val(name);
+        }
+
+        function showPersonalCoachName(){
+            var name = $('#customer_select').find("option:selected").attr("name");
+            $("#personal_coach_name").val(name);
         }
 
         function chooseCourseType(){
             if (document.getElementById("radio_personal").checked) {
-                document.getElementById("customer").style.display="";
+                document.getElementById("personal").style.display="";
+                document.getElementById("public").style.display="none";
             }
             else {
-                document.getElementById("customer").style.display="none";
+                document.getElementById("personal").style.display="none";
+                document.getElementById("public").style.display="";
             }
         }
+
     </script>
     <title></title>
 </head>
 <body>
 
-  <form method="POST" action="/web/course_arrangement">
+  <form id="add_form" method="POST" action="/web/course_arrangement" >
 
-      <div><input type="text" id="datepicker" name="date"/></div></br>
+      <div>课程日期：<input type="text" id="datepicker" name="date"/></div></br>
 
-      <div>课程类型：<input type="radio" id="radio_public" name="course_type" onclick="chooseCourseType()" checked="checked"/>公共课程
-                <input type="radio" id="radio_personal" name="course_type" onclick="chooseCourseType()" />私人课程
+      <div>课程类型：<input type="radio" id="radio_public" name="course_type" value="public" onclick="chooseCourseType()" checked="checked"/>公共课程
+                <input type="radio" id="radio_personal" name="course_type" value="personal" onclick="chooseCourseType()" />私人课程
       </div></br>
 
-      <div id="customer" style="display: none">顾客姓名：
-          <select id="customer_id" name="customer_id">
-              <option value="null" selected="selected">请选择</option>
-              <c:forEach items="${customerList}" var="customer" varStatus="status">
-                  <option value="<c:out value="${customer.id}" />">
-                      <c:out value="${customer.name}" /></option>
-              </c:forEach></select>
-      </div></br>
+      <div id="personal" style="display: none">
+          顾客姓名：<select id="customer_select" name="customer_id" onchange="showPersonalCoachName()">
+                    <option value="null" selected="selected">请选择</option>
+                        <c:forEach items="${customerList}" var="customer" varStatus="status">
+                            <option name="${customer.coach.name}" value="<c:out value="${customer.id}" />">
+                                <c:out value="${customer.name}" /></option>
+                        </c:forEach></select></br>
+          教练姓名：<input id="personal_coach_name" name="coach_name">
+      </div>
 
-      <div>课程名称：<select id="course_select" name="course_id" onchange="showCoachName(this)">
-            <option value="null" selected="selected">请选择</option>
-            <c:forEach items="${courseList}" var="course" varStatus="status">
-                <option name="${course.coach.name}" value= "<c:out value="${course.id}" />">
-                    <c:out value="${course.name}" /></option>
-            </c:forEach></select>
-      </div></br>
-
-      <div>教练姓名：<input id="coach_name" type="text" readonly="readonly"></div></br>
+      <div id="public">
+          课程名称：<select id="public_course_select" name="course_id" onchange="showPublicCoachName()">
+                    <option value="null" selected="selected">请选择</option>
+                        <c:forEach items="${courseList}" var="course" varStatus="status" >
+                            <option 
+                                    name="${course.coach.name}" value= "<c:out value="${course.id}" />">
+                                    <c:out value="${course.name}" /></option>
+                        </c:forEach></select>></br>
+          教练姓名：<input id="public_coach_name" type="text" readonly="readonly" name="coach_name"></br>
+      </div>
 
       <input type="text" readonly="readonly" name="id" hidden="hidden"
-           value="<c:out value="${dateCourse.id}" />"/>
+           value="<c:out value="${dateRelation.id}" />"/>
 
       <input type="submit" value="提交" />
   </form>
