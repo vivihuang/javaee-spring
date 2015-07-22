@@ -162,4 +162,19 @@ public class DateRelationDao {
 
         return dateRelationList;
     }
+
+    public List<DateRelation> getPersonalCourses(String customerId) {
+        List<DateRelation> dateRelationList = new ArrayList<DateRelation>();
+        Session session = null;
+        try {
+            session = factory.openSession();
+            String sql = "SELECT * FROM date_course_customer WHERE customer_id="+customerId;
+            dateRelationList = session.createSQLQuery(sql).addEntity(DateRelation.class).list();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+        return dateRelationList;
+    }
 }

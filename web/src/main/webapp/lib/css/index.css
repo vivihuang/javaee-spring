@@ -1,0 +1,13 @@
+html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+table {
+    width:1000px;/*设置元素宽度为980px*/
+    /*border:1px solid #000;/!*设置一个颜色为#000，宽度为1px的边框*!/*/
+    margin: 0px auto 1200px auto;
+    height: 200px;
+
+}

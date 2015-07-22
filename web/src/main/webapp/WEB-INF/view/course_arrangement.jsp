@@ -13,16 +13,39 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link type="text/css" rel="stylesheet" href="./lib/css/navbar.css">
+<link type="text/css" rel="stylesheet" href="./lib/css/index.css">
+
+
 <html>
 <head>
     <title></title>
 </head>
 <body>
+
+<div class="logo">
+  <img src="./lib/images/cat.jpg">Vivi的健身房
+</div>
+
+<div class="nav">
+  <ul>
+    <li><a href="/web/index">首页</a></li>
+    <li class="userManagement"><a href="/web/user">用户管理</a>
+      <ul>
+        <li><a href="/web/logout">退出登录</a></li>
+        <li><a href="#">增加用户</a></li>
+      </ul></li>
+    <li><a href="/web/customer">顾客管理</a></li>
+    <li><a href="/web/course" >课程管理</a></li>
+    <li><a href="/web/course_arrangement" >课程安排</a></li>
+  </ul>
+</div>
+
   <tr>
     <td><a href="/web/course_arrangement/add" >增加课程</a></td>
   </tr>
 
-  <table border="2">
+  <table>
     <tr>
       <td>日期</td>
       <td>课程</td>
@@ -32,9 +55,8 @@
     </tr>
 
     <c:forEach items="${course_arrangement_list}" var="item" varStatus="status">
-      <%--<% SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yy-MM-dd");%>--%>
       <tr>
-        <td><c:out value="${item.date}" /></td>
+        <td><fmt:formatDate value="${item.date}" pattern="yyyy-MM-dd"/></td>
         <td><c:out value="${item.course.name}" /></td>
         <td><c:out value="${item.course.coach.name}" /></td>
         <td><c:out value="${item.customer.name}" /></td>

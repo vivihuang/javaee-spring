@@ -1,0 +1,105 @@
+html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+.logo{
+    text-align: center;
+    width:500px;/*(一定要设置这个值)*/
+    height:90px;/*(一定要设置这个值)*/
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 50px;
+    color: lightskyblue;
+    line-height:100px;
+}
+
+.logo img {
+    vertical-align: top;
+    width: 120px;
+    height: 90px;
+}
+
+.nav {
+    text-align: center;
+    margin-left: 200px;
+    margin-right: auto;
+}
+
+.nav ul{
+    width:850px;/*设置元素宽度为980px*/
+    height: 100px;
+    /*border:1px solid #000;/!*设置一个颜色为#000，宽度为1px的边框*!/*/
+    margin: 0px auto 0px auto;
+    display: inline-block;
+    }
+
+.nav ul li{
+    float:left;/*让li元素左浮动*/
+    list-style-type:none;
+    display:inline;
+    padding: 20px 10px;
+}
+
+.nav ul li a{
+    width:100px;/*设置元素宽为80px*/
+    height:10px;/*设置高度为28px*/
+    line-height:10px;/*设置行距为28px，让文字在每行的中间位置*/
+    /*background:black;/!*设置元素的背景为红色*!/*/
+    color:black;/*文字颜色是白色*/
+    /*margin:20px 10px;*/
+    font-size:18px;/*用12号字*/
+    display:block;/*这个比较关键，因为a本身就是联级元素，本身不具有宽高，用这个把它变成块级元素，这样前面设置的宽和高就能起作用了*/
+    text-align:center;/*让文本居中*/
+    text-decoration:none; /*去掉下划线*/
+    padding-top:4px;
+}
+
+.nav ul li a:hover{ /*这个大概的意思就是当鼠标放到这个a元素的上面时，这个a元素的样式就按下面的代码执行*/
+    width: 100px;
+    height:10px;
+    line-height:10px;
+    /*border:1px solid red;*/
+    color:red;
+    background:#FFF;
+}
+
+.userManagement ul {
+    display: none;
+    position: absolute;
+}
+
+.userManagement:hover ul {
+    display: inline;
+    width: 500px;
+    height: 200px;
+    position: absolute;
+}
+
+.userManagement ul li{
+    float:none;/*让li元素左浮动*/
+    /*display:inline;*/
+    /*padding:0 10px*/
+}
+
+.userManagement ul li a{
+    width:100px;/*设置元素宽为80px*/
+    line-height:10px;/*设置行距为28px，让文字在每行的中间位置*/
+    color:black;/*文字颜色是白色*/
+    font-size:18px;/*用12号字*/
+    text-align:center;/*让文本居中*/
+    text-decoration:none; /*去掉下划线*/
+    padding-top:4px;
+    margin-left: -90px;
+}
+
+.userManagement ul li a:hover{ /*这个大概的意思就是当鼠标放到这个a元素的上面时，这个a元素的样式就按下面的代码执行*/
+    width: 100px;
+    /*height:40px;*/
+    /*line-height:20px;*/
+    /*border:1px solid red;*/
+    color:red;
+    background:#FFF;
+}
+

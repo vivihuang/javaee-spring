@@ -9,6 +9,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <jsp:useBean id='MD5' scope='request' class='com.tw.core.util.MD5Util'/>
+<link type="text/css" rel="stylesheet" href="./lib/css/navbar.css">
+
 <html>
 <head>
     <title></title>

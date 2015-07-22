@@ -11,30 +11,33 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link type="text/css" rel="stylesheet" href="./lib/css/navbar.css">
 
 <html>
 <head>
-    <title></title>
+    <title>健身房管理系统</title>
 </head>
 
 <body>
-    <table>
-        <tr>
-            <td><a href="/web/logout">退出登录</a></td>
-        </tr>
-        <tr>
-            <td><a href="/web/user">用户管理</a></td>
-            <td><a href="/web/customer">顾客管理</a></td>
-            <td><a href="/web/course" >课程管理</a></td>
-        </tr>
-        <tr>
-            <td><a href="/web/course_arrangement" >课程安排</a></td>
-        </tr>
-        <tr>
-            <div datatype="date" id="datepicker" ></div>
-        </tr>
+<%--<div class="logo">--%>
+    <div class="logo">
+        <img src="./lib/images/cat.jpg">Vivi的健身房
+    </div>
 
-    </table>
+    <div class="nav">
+        <ul>
+            <li><a href="/web/index">首页</a></li>
+            <li class="userManagement"><a href="/web/user">用户管理</a>
+                <ul>
+                    <li><a href="/web/logout">退出登录</a></li>
+                    <li><a href="/web/user/add">增加用户</a></li>
+                </ul></li>
+            <li><a href="/web/customer">顾客管理</a></li>
+            <li><a href="/web/course" >课程管理</a></li>
+            <li><a href="/web/course_arrangement" >课程安排</a></li>
+        </ul>
+    </div>
+<%--</div>--%>
 
   </body>
 </html>

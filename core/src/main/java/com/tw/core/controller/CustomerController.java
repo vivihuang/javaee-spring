@@ -38,6 +38,7 @@ public class CustomerController {
     public ModelAndView showCustomerPage(){
         modelAndView.setViewName("customer");
         modelAndView.addObject("customerList",customerDao.getCustomers());
+//        modelAndView.addObject("personalCourseList",null);
         return modelAndView;
     }
 
@@ -51,7 +52,7 @@ public class CustomerController {
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public ModelAndView addCustomer() {
         modelAndView.setViewName("modify_customer");
-        modelAndView.addObject("coachList",coachDao.getCoaches());
+        modelAndView.addObject("coachList", coachDao.getCoaches());
         return modelAndView;
     }
 
@@ -69,6 +70,14 @@ public class CustomerController {
         customer = customerDao.getCustomerById(Integer.parseInt(customerId));
         customerDao.deleteCustomer(customerId);
         modelAndView.setViewName("redirect:/customer");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/courses/{id}",method = RequestMethod.GET)
+    public ModelAndView showPersonalCourses(@PathVariable("id")String customerId){
+        modelAndView.setViewName("redirect:/customer");
+        modelAndView.addObject("personalCourseList",customerService.getPersonalCourses(customerId));
+//        modelAndView.addObject("customerList",customerDao.getCustomers());
         return modelAndView;
     }
 }

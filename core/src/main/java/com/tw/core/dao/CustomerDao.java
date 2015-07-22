@@ -1,6 +1,7 @@
 package com.tw.core.dao;
 
 import com.tw.core.entity.Coach;
+import com.tw.core.entity.Course;
 import com.tw.core.entity.Customer;
 import com.tw.core.entity.User;
 import org.hibernate.Session;
@@ -135,4 +136,5 @@ public class CustomerDao {
             }
         }
     }
+
 }

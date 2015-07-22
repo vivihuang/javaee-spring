@@ -46,7 +46,7 @@ public class LoginController {
     public ModelAndView loginPage(HttpServletRequest request,HttpServletResponse response){
         request.getSession().setAttribute("loginStatus", "true");
         return new ModelAndView("index");
-//        return new ModelAndView("calendar");
+//        return new ModelAndView(("toolbar"));
     }
 
 
