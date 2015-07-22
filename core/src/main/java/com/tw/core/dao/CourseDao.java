@@ -169,4 +169,18 @@ public class CourseDao {
         }
 
     }
+
+    public List<Course> getPublicCourses(){
+        Session session = null;
+        try {
+            session = factory.openSession();
+            String sql = "SELECT * FROM course WHERE course_name<>'私教课'";
+            courseList = session.createSQLQuery(sql).addEntity(Course.class).list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+        return courseList;
+    }
 }

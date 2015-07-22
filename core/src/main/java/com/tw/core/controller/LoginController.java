@@ -25,17 +25,8 @@ public class LoginController {
     @Autowired
     private UserDao userDao;
 
+
     ModelAndView modelAndView = new ModelAndView();
-
-    @RequestMapping("/")
-    public ModelAndView welcomePage(){
-        return new ModelAndView("index","userList",userDao.getUsers());
-    }
-
-    @RequestMapping("/index")
-    public ModelAndView indexPage(){
-        return new ModelAndView("index");
-    }
 
 //    @RequestMapping(value = "/login",method = RequestMethod.GET)
 //    public ModelAndView loginPage(){
@@ -45,8 +36,7 @@ public class LoginController {
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public ModelAndView loginPage(HttpServletRequest request,HttpServletResponse response){
         request.getSession().setAttribute("loginStatus", "true");
-        return new ModelAndView("index");
-//        return new ModelAndView(("toolbar"));
+        return new ModelAndView("login");
     }
 
 
