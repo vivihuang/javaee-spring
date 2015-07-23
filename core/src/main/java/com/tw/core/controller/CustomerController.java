@@ -22,13 +22,10 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
-
     @Autowired
     private CustomerDao customerDao;
-
     @Autowired
     private Customer customer;
-
     @Autowired
     private CoachDao coachDao;
 
@@ -38,7 +35,6 @@ public class CustomerController {
     public ModelAndView showCustomerPage(){
         modelAndView.setViewName("customer");
         modelAndView.addObject("customerList",customerDao.getCustomers());
-//        modelAndView.addObject("personalCourseList",null);
         return modelAndView;
     }
 
@@ -77,7 +73,6 @@ public class CustomerController {
     public ModelAndView showPersonalCourses(@PathVariable("id")String customerId){
         modelAndView.setViewName("redirect:/customer");
         modelAndView.addObject("personalCourseList",customerService.getPersonalCourses(customerId));
-//        modelAndView.addObject("customerList",customerDao.getCustomers());
         return modelAndView;
     }
 }

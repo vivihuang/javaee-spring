@@ -1,6 +1,7 @@
 package com.tw.core.controller;
 
 import com.tw.core.dao.UserDao;
+import com.tw.core.entity.Employee;
 import com.tw.core.entity.User;
 import com.tw.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +11,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * Created by Vivi on 7/13/15.
  */
 
 @Controller
-@RequestMapping(value = "//user")
+@RequestMapping(value = "/user")
 public class UserController {
 
     @Autowired
@@ -62,6 +64,14 @@ public class UserController {
     public ModelAndView deleteUser(@PathVariable("id")String userId) {
         userDao.deleteUser(Integer.parseInt(userId));
         modelAndView.setViewName("redirect://user");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/history",method = RequestMethod.GET)
+    public ModelAndView getEmployees(){
+        List<Employee> employeeList = userDao.getEmployees();
+        modelAndView.setViewName("employee");
+        modelAndView.addObject("employeeList",employeeList);
         return modelAndView;
     }
 }

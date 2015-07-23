@@ -27,7 +27,9 @@
             <ul><li><a href="/web/logout">退出登录</a></li></ul>
         </li>
         <li class="userManagement"><a href="/web/user">用户管理</a>
-            <ul><li><a href="/web/user/add">增加用户</a></li></ul>
+            <ul><li><a href="/web/user/add">增加用户</a></li>
+                <li><a href="/web/user/history">查看历史用户</a></li>
+            </ul>
         </li>
         <li class="userManagement"><a href="/web/customer">顾客管理</a>
             <ul><li><a href="/web/customer/add">增加顾客</a></li></ul>

@@ -30,7 +30,9 @@
             <ul><li><a href="/web/logout">退出登录</a></li></ul>
         </li>
         <li class="userManagement"><a href="/web/user">用户管理</a>
-            <ul><li><a href="/web/user/add">增加用户</a></li></ul>
+            <ul><li><a href="/web/user/add">增加用户</a></li>
+                <li><a href="/web/user/history">查看历史用户</a></li>
+            </ul>
         </li>
         <li class="userManagement"><a href="/web/customer">顾客管理</a>
             <ul><li><a href="/web/customer/add">增加顾客</a></li></ul>
@@ -44,6 +46,8 @@
     </ul>
 </div>
 
+<div>
+    <ul class="welcome"><p>请增加用户</p></ul>
 <form method="POST" action="/web/user">
   <ul>用户 : <input class="input"
         type="text" name="name"
@@ -54,6 +58,7 @@
         value="<c:out value="${user.password}" />"/>
       </ul>
     <ul>职务：<select class="select" name="role">
+            <option selected>请选择</option>
             <option value= "hr" >hr</option>
             <option value="op" >op</option>
             <option value="coach">coach</option>
@@ -64,6 +69,7 @@
   <ul><input class="submit" type="submit" value="提交"/>
       </ul>
 </form>
+    </div>
 
 </body>
 </html>

@@ -25,16 +25,12 @@ public class CourseController {
 
     @Autowired
     private CourseService courseService;
-
     @Autowired
     private CourseDao courseDao;
-
     @Autowired
     private CoachDao coachDao;
-
     @Autowired
     private CustomerDao customerDao;
-
     @Autowired
     private DateRelationDao dateRelationDao;
 

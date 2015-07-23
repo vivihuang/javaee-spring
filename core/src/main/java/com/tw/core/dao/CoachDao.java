@@ -61,10 +61,8 @@ public class CoachDao {
             Query query = session.createSQLQuery(sql).addEntity(Coach.class);
             coachList = query.list();
         } catch (Exception e) {
-            //Handle errors for Class.forName
             e.printStackTrace();
         } finally {
-            //finally block used to close resources
             if (session != null) {
                 if (session.isOpen()) {
                     session.close();

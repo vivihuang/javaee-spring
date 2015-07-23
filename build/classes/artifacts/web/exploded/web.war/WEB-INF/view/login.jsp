@@ -30,25 +30,9 @@
             </ul>
         <ul>密  码：<input class="input" name="inputPassword" type="text" size="20"/>
             </ul>
-        <ul><input class="submit" type="submit" value="提交"/>
+        <ul><input class="submit" type="submit" value="登录"/>
             </ul>
     </form>
-
-    <table border="4">
-        <tr align="center">
-            <%--<td><c:out value="编号" /></td>--%>
-            <td><c:out value="姓名" /></td>
-        </tr>
-
-        <c:forEach items="${userList}"  var="item" varStatus="status" >
-            <tr align="center">
-                    <%--<td><c:out value="${item.id} " /></td>--%>
-                <td><c:out value="${item.name}" /></td>
-                <td><a href="/web/users/update/<c:out value="${item.id}"/>">修改</a></td>
-                <td><a href="/web/users/delete/<c:out value="${item.id}" />">删除</a></td>
-            </tr>
-        </c:forEach>
-    </table>
     </div>
 </body>
 

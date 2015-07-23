@@ -28,7 +28,9 @@
       <ul><li><a href="/web/logout">退出登录</a></li></ul>
     </li>
     <li class="userManagement"><a href="/web/user">用户管理</a>
-      <ul><li><a href="/web/user/add">增加用户</a></li></ul>
+      <ul><li><a href="/web/user/add">增加用户</a></li>
+          <li><a href="/web/user/history">查看历史用户</a></li>
+      </ul>
     </li>
     <li class="userManagement"><a href="/web/customer">顾客管理</a>
       <ul><li><a href="/web/customer/add">增加顾客</a></li></ul>
@@ -48,7 +50,7 @@
   <ul class="welcome"><p>用户列表</p></ul>
   <tr align="center">
     <td><c:out value="用户名" /></td>
-    <td><c:out value="密码" /></td>
+    <%--<td><c:out value="密码" /></td>--%>
     <td><c:out value="职务" /></td>
     <td colspan="2"><c:out value="操作" /></td>
   </tr>
@@ -56,7 +58,7 @@
   <c:forEach items="${userList}"  var="user" varStatus="status" >
     <tr align="center">
       <td><c:out value="${user.name}" /></td>
-      <td><c:out value="${user.password}" /></td>
+      <%--<td><c:out value="${user.password}" /></td>--%>
       <td><c:out value="${user.employee.role}" /></td>
       <td><a href="/web/user/update/<c:out value="${user.id}"/>">修改用户</a></td>
       <td><a href="/web/user/delete/<c:out value="${user.id}" />">删除用户</a></td>

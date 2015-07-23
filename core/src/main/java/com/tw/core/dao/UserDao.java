@@ -146,4 +146,20 @@ public class UserDao {
         }
         return null;
     }
+
+    public List<Employee> getEmployees() {
+        List<Employee> employeeList = new ArrayList<Employee>();
+        Session session = null;
+
+        try {
+            session = factory.openSession();
+            String sql = "SELECT * FROM employee";
+            employeeList = session.createSQLQuery(sql).addEntity(Employee.class).list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return employeeList;
+    }
 }
