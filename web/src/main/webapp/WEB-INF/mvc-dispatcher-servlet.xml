@@ -10,7 +10,7 @@
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-    <context:annotation-config/>
+    <!--<context:annotation-config/>-->
     <context:component-scan base-package="com.tw.core"/>
 
     <bean id="viewResolver"
@@ -24,12 +24,13 @@
 
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path = "/**"></mvc:mapping>
-            <bean class="com.tw.core.interceptor.LoginInterceptor"></bean>
+            <mvc:mapping path = "/**"/>
+            <mvc:exclude-mapping path="/lib/**"/>
+            <bean class="com.tw.core.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 
+    <mvc:resources mapping="/lib/**" location="/lib/"/>
     <mvc:annotation-driven />
-    <mvc:resources mapping="/lib/**" location="/lib/" />
 
 </beans>

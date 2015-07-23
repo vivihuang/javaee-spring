@@ -9,52 +9,22 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/lib/css/navbar.css">
-<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/lib/css/form.css">
-
 
 <html>
 <head>
-    <script type="text/javascript">
-        $(function() {
-            $("#datepicker").datepicker({
-                dateFormat:'yy-mm-dd',
-                changeMonth : true,
-                changeYear : true
-            });
-        });
 
-        function showPublicCoachName() {
-            var name = $('#public_course_select').find("option:selected").attr("name");
-            $("#public_coach_name").val(name);
-        }
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="lib/js/modifyCourseArrangement.js"></script>
+    <link type="text/css" rel="stylesheet" href="lib/css/navbar.css">
+    <link type="text/css" rel="stylesheet" href="lib/css/form.css">
 
-        function showPersonalCoachName(){
-            var name = $('#customer_select').find("option:selected").attr("name");
-            $("#personal_coach_name").val(name);
-        }
-
-        function chooseCourseType(){
-            if (document.getElementById("radio_personal").checked) {
-                document.getElementById("personal").style.display="";
-                document.getElementById("public").style.display="none";
-            }
-            else {
-                document.getElementById("personal").style.display="none";
-                document.getElementById("public").style.display="";
-            }
-        }
-
-    </script>
     <title></title>
 </head>
 <body>
 
 <div class="logo">
-    <img src="<%=request.getContextPath()%>/lib/images/cat.jpg">Vivi的健身房
+    <img src="<lib/images/cat.jpg">Vivi的健身房
 </div>
 
 <div class="nav">

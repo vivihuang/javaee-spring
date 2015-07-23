@@ -19,9 +19,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
 
-        if (request.getSession().getAttribute("loginStatus") !=null) {
+        if (request.getSession().getAttribute("loginStatus") != null) {
             return true;
         }
+
         try {
             Cookie cookie = new Cookie("currentURL", request.getRequestURI().substring(4));
             cookie.setPath("/");
@@ -30,6 +31,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return false;
     }
 }

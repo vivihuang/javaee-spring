@@ -13,8 +13,8 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/lib/css/navbar.css">
-<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/lib/css/table.css">
+<link type="text/css" rel="stylesheet" href="lib/css/navbar.css">
+<link type="text/css" rel="stylesheet" href="lib/css/table.css">
 
 
 <html>
@@ -24,7 +24,7 @@
 <body>
 
 <div class="logo">
-  <img src="<%=request.getContextPath()%>/lib/images/cat.jpg">Vivi的健身房
+  <img src="lib/images/cat.jpg">Vivi的健身房
 </div>
 
 <div class="nav">
