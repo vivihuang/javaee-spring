@@ -9,8 +9,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<link type="text/css" rel="stylesheet" href="lib/css/navbar.css">
-<link type="text/css" rel="stylesheet" href="lib/css/form.css">
+<link type="text/css" rel="stylesheet" href="/web/lib/css/navbar.css">
+<link type="text/css" rel="stylesheet" href="/web/lib/css/form.css">
 
 
 <html>
@@ -20,7 +20,7 @@
 <body>
 
 <div class="logo">
-    <img src="lib/images/cat.jpg">Vivi的健身房
+    <img src="/web/lib/images/cat.jpg">Vivi的健身房
 </div>
 
 <div class="nav">

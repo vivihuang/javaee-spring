@@ -12,15 +12,15 @@
 
 <html>
 <head>
-    <link type="text/css" rel="stylesheet" href="lib/css/navbar.css"/>
-    <link type="text/css" rel="stylesheet" href="lib/css/form.css">
+    <link type="text/css" rel="stylesheet" href="/web/lib/css/navbar.css"/>
+    <link type="text/css" rel="stylesheet" href="/web/lib/css/form.css">
 
     <title></title>
 </head>
 
 <body>
 <div class="logo">
-    <img src="lib/images/cat.jpg">Vivi的健身房
+    <img src="/web/lib/images/cat.jpg">Vivi的健身房
 </div>
 
 <div>

@@ -8,8 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<link type="text/css" rel="stylesheet" href="lib/css/navbar.css">
-<link type="text/css" rel="stylesheet" href="lib/css/table.css">
+<link type="text/css" rel="stylesheet" href="/web/lib/css/navbar.css">
+<link type="text/css" rel="stylesheet" href="/web/lib/css/table.css">
 
 
 
@@ -20,7 +20,7 @@
 <body>
 
 <div class="logo">
-    <img src="lib/images/cat.jpg">Vivi的健身房
+    <img src="/web/lib/images/cat.jpg">Vivi的健身房
 </div>
 
 <div class="nav">

@@ -15,16 +15,16 @@
 
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script src="lib/js/modifyCourseArrangement.js"></script>
-    <link type="text/css" rel="stylesheet" href="lib/css/navbar.css">
-    <link type="text/css" rel="stylesheet" href="lib/css/form.css">
+    <script src="/web/lib/js/modifyCourseArrangement.js"></script>
+    <link type="text/css" rel="stylesheet" href="/web/lib/css/navbar.css">
+    <link type="text/css" rel="stylesheet" href="/web/lib/css/form.css">
 
     <title></title>
 </head>
 <body>
 
 <div class="logo">
-    <img src="<lib/images/cat.jpg">Vivi的健身房
+    <img src="/web/lib/images/cat.jpg">Vivi的健身房
 </div>
 
 <div class="nav">
