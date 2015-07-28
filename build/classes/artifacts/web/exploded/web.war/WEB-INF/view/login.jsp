@@ -9,18 +9,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <jsp:useBean id='MD5' scope='request' class='com.tw.core.util.MD5Util'/>
-<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/lib/css/navbar.css">
-<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/lib/css/form.css">
-
 
 <html>
 <head>
+    <link type="text/css" rel="stylesheet" href="/web/lib/css/navbar.css"/>
+    <link type="text/css" rel="stylesheet" href="/web/lib/css/form.css">
+
     <title></title>
 </head>
 
 <body>
 <div class="logo">
-    <img src="<%=request.getContextPath()%>/lib/images/cat.jpg">Vivi的健身房
+    <img src="/web/lib/images/cat.jpg">Vivi的健身房
 </div>
 
 <div>
@@ -28,7 +28,7 @@
     <form method="POST" action="/web/login" name="login">
         <ul>用户：<input class="input" name="inputName" type="text" size="20" />
             </ul>
-        <ul>密  码：<input class="input" name="inputPassword" type="text" size="20"/>
+        <ul>密码：<input class="input" name="inputPassword" type="text" size="20"/>
             </ul>
         <ul><input class="submit" type="submit" value="登录"/>
             </ul>

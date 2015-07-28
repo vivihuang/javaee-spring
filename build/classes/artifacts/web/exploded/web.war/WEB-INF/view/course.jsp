@@ -8,19 +8,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/lib/css/navbar.css">
-<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/lib/css/table.css">
-
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
 <head>
+    <script language="JavaScript" src="/web/lib/js/jquery-1.11.1.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/web/lib/css/navbar.css">
+    <link type="text/css" rel="stylesheet" href="/web/lib/css/table.css">
+    <script src="/web/lib/js/course.js"></script>
     <title></title>
 </head>
 <body>
 
 <div class="logo">
-    <img src="<%=request.getContextPath()%>/lib/images/cat.jpg">Vivi的健身房
+    <img src="/web/lib/images/cat.jpg">Vivi的健身房
 </div>
 
 <div class="nav">
@@ -58,9 +59,18 @@
     <c:forEach items="${courseList}"  var="course" varStatus="status" >
         <tr align="center">
                 <%--<td><c:out value="${item.id} " /></td>--%>
-            <td><c:out value="${course.name}" /></td>
-            <td><c:out value="${course.coach.name}" /></td>
-            <td><a href="/web/course/update/<c:out value="${course.id}"/>">修改课程</a></td>
+            <td class="update" id="courseName"><c:out value="${course.name}" /></td>
+            <td class="confirmUpdate" hidden="hidden"><input id="nameUpdateInput" type="text" value="${course.name}" /></td>
+            <td class="update" id="coachName"><c:out value="${course.coach.name}" /></td>
+            <td class="confirmUpdate" hidden="hidden">
+                <select class="select" name="coach_id">
+                    <c:forEach items="${coachList}" var="coach" varStatus="status">
+                        <option name="${coach.id}" value="<c:out value="${course.id}" />"><c:out value="${coach.id}. ${coach.name}" /></option>
+                    </c:forEach>
+                </select>
+            </td>
+            <td class="update" ><button class="updateButton" value="${course.id}">修改课程</button></td>
+            <td  class="confirmUpdate" hidden="hidden"><button class="confirmUpdateButton">确认修改</button></td>
             <td><a href="/web/course/delete/<c:out value="${course.id}" />">删除课程</a></td>
         </tr>
     </c:forEach>

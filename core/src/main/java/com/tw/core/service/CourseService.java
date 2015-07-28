@@ -37,10 +37,10 @@ public class CourseService {
     SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
     Date date = new Date();
 
-    public void editCourse(HttpServletRequest request,HttpServletResponse response){
+    public Course editCourse(HttpServletRequest request,HttpServletResponse response){
         String courseId = request.getParameter("id");
-        course.setName(request.getParameter("course_name"));
-        int coachId = Integer.parseInt(request.getParameter("coach_id"));
+        course.setName(request.getParameter("courseName"));
+        int coachId = Integer.parseInt(request.getParameter("coachId"));
         coach = coachDao.getCoachById(coachId);
         course.setCoach(coach);
 
@@ -51,6 +51,7 @@ public class CourseService {
             course.setId(Integer.parseInt(courseId));
             courseDao.updateCourse(course);
         }
+        return course;
     }
 
     public void editCourseArrangement(HttpServletRequest request){

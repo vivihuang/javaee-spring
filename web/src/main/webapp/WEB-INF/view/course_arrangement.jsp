@@ -10,11 +10,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="/web/lib/js/jquery-1.11.1.min.js"></script>
 <link type="text/css" rel="stylesheet" href="/web/lib/css/navbar.css">
 <link type="text/css" rel="stylesheet" href="/web/lib/css/table.css">
+<script src="/web/lib/js/courseArrangement.js"></script>
 
 
 <html>
@@ -49,10 +48,6 @@
   </ul>
 </div>
 
-  <%--<tr>--%>
-    <%--&lt;%&ndash;<td><a href="/web/course_arrangement/add" >增加课程</a></td>&ndash;%&gt;--%>
-  <%--</tr>--%>
-
 <div>
   <ul class="welcome"><p>课程安排</p></ul>
   <table>
@@ -70,11 +65,14 @@
         <td><c:out value="${item.course.name}" /></td>
         <td><c:out value="${item.course.coach.name}" /></td>
         <td><c:out value="${item.customer.name}" /></td>
-        <td><a href="/web/course_arrangement/update/<c:out value="${item.id}" />">修改课程</a></td>
-        <td><a href="/web/course_arrangement/delete/<c:out value="${item.id}" />">删除课程</a></td>
+        <%--<td><a href="/web/course_arrangement/update/<c:out value="${item.id}" />">修改课程</a></td>--%>
+        <%--<td><a href="/web/course_arrangement/delete/<c:out value="${item.id}" />">删除课程</a></td>--%>
+        <td><button class="update" value="${item.id}">修改课程</button></td>
+        <td><button class="delete" value="${item.id}">删除课程</button></td>
       </tr>
       </c:forEach>
   </table>
+  </div>
 
 </body>
 </html>

@@ -13,8 +13,10 @@
 <html>
 <head>
 
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script language="JavaScript" src="/web/lib/js/jquery-1.11.1.min.js"></script>
+    <script src="/web/lib/js/jquery-ui/external/jquery/jquery.js"></script>
+    <script src="/web/lib/js/jquery-ui/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="/web/lib/js/jquery-ui/jquery-ui.min.css">
     <script src="/web/lib/js/modifyCourseArrangement.js"></script>
     <link type="text/css" rel="stylesheet" href="/web/lib/css/navbar.css">
     <link type="text/css" rel="stylesheet" href="/web/lib/css/form.css">
@@ -55,7 +57,7 @@
 
   <form id="add_form" method="POST" action="/web/course_arrangement" >
 
-      <div>课程日期：<input class="input" type="text" id="datepicker" name="date"/></div>
+      <div>课程日期：<input class="input" type="text" id="date" name="date"/></div>
 
       <div>课程类型：<input class="radio" type="radio" id="radio_public" name="course_type" value="public" onclick="chooseCourseType()" checked="checked"/>公共课程
                 <input class="radio" type="radio" id="radio_personal" name="course_type" value="personal" onclick="chooseCourseType()" />私人课程

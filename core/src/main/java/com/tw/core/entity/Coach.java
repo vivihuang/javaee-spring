@@ -30,36 +30,45 @@ public class Coach{
     @JoinColumn(name = "employee_id")
     private List<Customer> customerList = new ArrayList<Customer>();
 
-    public void setId(int id){
+    public Coach() {
+    }
+
+    public Coach(int id,String name) {
         this.id = id;
-    }
 
-    public int getId(){
-        return this.id;
-    }
-
-    public void setName(String name){
         this.name = name;
     }
 
-    public String getName(){
-        return this.name;
+    public int getId() {
+
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Course> getCourseList() {
+        return courseList;
     }
 
     public void setCourseList(List<Course> courseList) {
         this.courseList = courseList;
     }
 
-    public List<Course> getCourseList(){
-        return this.courseList;
+    public List<Customer> getCustomerList() {
+        return customerList;
     }
 
     public void setCustomerList(List<Customer> customerList) {
         this.customerList = customerList;
     }
-
-    public List<Customer> getCustomerList() {
-        return this.customerList;
-    }
-
 }

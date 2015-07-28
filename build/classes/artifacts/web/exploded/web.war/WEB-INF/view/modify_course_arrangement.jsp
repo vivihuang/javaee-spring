@@ -9,52 +9,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/lib/css/navbar.css">
-<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/lib/css/form.css">
-
 
 <html>
 <head>
-    <script type="text/javascript">
-        $(function() {
-            $("#datepicker").datepicker({
-                dateFormat:'yy-mm-dd',
-                changeMonth : true,
-                changeYear : true
-            });
-        });
 
-        function showPublicCoachName() {
-            var name = $('#public_course_select').find("option:selected").attr("name");
-            $("#public_coach_name").val(name);
-        }
+    <script language="JavaScript" src="/web/lib/js/jquery-1.11.1.min.js"></script>
+    <script src="/web/lib/js/jquery-ui/external/jquery/jquery.js"></script>
+    <script src="/web/lib/js/jquery-ui/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="/web/lib/js/jquery-ui/jquery-ui.min.css">
+    <script src="/web/lib/js/modifyCourseArrangement.js"></script>
+    <link type="text/css" rel="stylesheet" href="/web/lib/css/navbar.css">
+    <link type="text/css" rel="stylesheet" href="/web/lib/css/form.css">
 
-        function showPersonalCoachName(){
-            var name = $('#customer_select').find("option:selected").attr("name");
-            $("#personal_coach_name").val(name);
-        }
-
-        function chooseCourseType(){
-            if (document.getElementById("radio_personal").checked) {
-                document.getElementById("personal").style.display="";
-                document.getElementById("public").style.display="none";
-            }
-            else {
-                document.getElementById("personal").style.display="none";
-                document.getElementById("public").style.display="";
-            }
-        }
-
-    </script>
     <title></title>
 </head>
 <body>
 
 <div class="logo">
-    <img src="<%=request.getContextPath()%>/lib/images/cat.jpg">Vivi的健身房
+    <img src="/web/lib/images/cat.jpg">Vivi的健身房
 </div>
 
 <div class="nav">
@@ -85,7 +57,7 @@
 
   <form id="add_form" method="POST" action="/web/course_arrangement" >
 
-      <div>课程日期：<input class="input" type="text" id="datepicker" name="date"/></div>
+      <div>课程日期：<input class="input" type="text" id="date" name="date"/></div>
 
       <div>课程类型：<input class="radio" type="radio" id="radio_public" name="course_type" value="public" onclick="chooseCourseType()" checked="checked"/>公共课程
                 <input class="radio" type="radio" id="radio_personal" name="course_type" value="personal" onclick="chooseCourseType()" />私人课程

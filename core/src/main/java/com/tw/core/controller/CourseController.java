@@ -1,19 +1,23 @@
 package com.tw.core.controller;
 
+import com.google.gson.Gson;
 import com.tw.core.dao.CoachDao;
 import com.tw.core.dao.CourseDao;
 import com.tw.core.dao.CustomerDao;
 import com.tw.core.dao.DateRelationDao;
+import com.tw.core.entity.Coach;
+import com.tw.core.entity.Course;
 import com.tw.core.service.CourseService;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Vivi on 7/18/15.
@@ -39,16 +43,23 @@ public class CourseController {
     @RequestMapping(value = "/course",method = RequestMethod.GET)
     public ModelAndView showCoachCoursePage(){
         modelAndView.setViewName("/course");
-        modelAndView.addObject("courseList",courseDao.getCourses());
+        modelAndView.addObject("courseList", courseDao.getCourses());
+        modelAndView.addObject("coachList",coachDao.getCoaches());
         return modelAndView;
     }
 
     @RequestMapping(value = "/course",method = RequestMethod.POST)
-    public ModelAndView modifyCourse(HttpServletRequest request,HttpServletResponse response){
-        courseService.editCourse(request,response);
-        modelAndView.setViewName("/course");
-        modelAndView.addObject("courseList",courseDao.getCourses());
-        return modelAndView;
+    @ResponseBody
+    public Course  modifyCourse(HttpServletRequest request, HttpServletResponse response){
+//        Gson gson = new Gson();
+//        String string = gson.toJson(courseService.editCourse(request, response));
+        Course course = courseService.editCourse(request,response);
+        course.getCoach().setCustomerList(null);
+        course.getCoach().setCourseList(null);
+        return course;
+//        modelAndView.setViewName("/course");
+//        modelAndView.addObject("courseList", courseDao.getCourses());
+//        modelAndView.addObject("coachList",coachDao.getCoaches());
     }
 
     @RequestMapping(value = "/course/add",method = RequestMethod.GET)
@@ -58,12 +69,25 @@ public class CourseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/course/update/{id}",method = RequestMethod.GET)
-    public ModelAndView updateCourse(@PathVariable("id")String courseId){
-        modelAndView.setViewName("modify_course");
-        modelAndView.addObject("course", courseDao.getCourseById(Integer.parseInt(courseId)));
-        modelAndView.addObject("coachList",coachDao.getCoaches());
-        return modelAndView;
+//    @RequestMapping(value = "/course/update/{id}",method = RequestMethod.GET)
+//    public ModelAndView updateCourse(@PathVariable("id")String courseId){
+//        modelAndView.setViewName("modify_course");
+//        modelAndView.addObject("course", courseDao.getCourseById(Integer.parseInt(courseId)));
+//        modelAndView.addObject("coachList",coachDao.getCoaches());
+//        return modelAndView;
+//    }
+
+    @RequestMapping(value = "/course/update", method = RequestMethod.GET)
+    @ResponseBody
+    public String updateCourse(){
+        Gson gson = new Gson();
+        List<Coach> coachList = coachDao.getCoaches();
+        for (int i=0;i<coachList.size();i++) {
+            coachList.get(i).setCourseList(null);
+            coachList.get(i).setCustomerList(null);
+        }
+        String string = gson.toJson(coachList);
+        return string;
     }
 
     @RequestMapping(value = "/course/delete/{id}",method = RequestMethod.GET)
@@ -103,10 +127,16 @@ public class CourseController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/course_arrangement/delete/{id}",method = RequestMethod.GET)
-    public ModelAndView deleteCourseArrangement(@PathVariable("id")String arrangementId) {
-        dateRelationDao.deleteCourseArrangement(Integer.parseInt(arrangementId));
-        modelAndView.setViewName("redirect:/course_arrangement");
-        return modelAndView;
+//    @RequestMapping(value = "/course_arrangement/delete/{id}",method = RequestMethod.GET)
+//    public ModelAndView deleteCourseArrangement(@PathVariable("id")String arrangementId) {
+//        dateRelationDao.deleteCourseArrangement(Integer.parseInt(arrangementId));
+//        modelAndView.setViewName("redirect:/course_arrangement");
+//        return modelAndView;
+//    }
+
+    @RequestMapping(value = "/course_arrangement/delete/{id}",method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteCourseArrangement(@PathVariable String id) {
+        dateRelationDao.deleteCourseArrangement(Integer.parseInt(id));
     }
 }
