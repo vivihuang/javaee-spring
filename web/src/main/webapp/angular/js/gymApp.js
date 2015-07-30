@@ -16,6 +16,10 @@ gymApp.config(['$routeProvider',function ($routeProvider) {
             templateUrl: '/web/angular/view/addUser.html',
             controller: 'AddUserController'
         })
+        .when('/user/employee', {
+            templateUrl: '/web/angular/view/employee.html',
+            controller: 'EmployeeController'
+        })
         .otherwise({
             redirectTo: '/'
         });

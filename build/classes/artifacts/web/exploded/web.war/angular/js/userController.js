@@ -5,39 +5,37 @@ gymApp.controller('UserController',function($scope,$http,$route){
         $scope.userList = userList;
     });
 
-    $scope.deleteUser = function(id){
+    $scope.deleteUser = function(event,id){
+        var tr = $(event.target).parent().parent();
         $http({
             method: 'DELETE',
             url: '/web/angular/user',
             params: {'id': id}
         }).success(function(){
-            $route.reload();
+            tr.remove();
         });
     };
 
     $scope.updateUser = function(event){
-        var target = $(event.target);
-        var tr = target.parent().parent();
+        var tr = $(event.target).parent().parent();
         tr.find("td.update").hide();
         tr.find("td.confirmUpdate").show();
     };
 
-    $scope.confirmUpdateUser = function(event,id) {
-        var target = $(event.target);
-        var tr = target.parent().parent();
+    $scope.confirmUpdateUser = function($this,event) {
+        var tr = $(event.target).parent().parent();
         tr.find("td.update").show();
         tr.find("td.confirmUpdate").hide();
+        var user = this.user;
 
         $http({
             method: 'PUT',
             url: '/web/angular/user',
             params: {
-                'id': id,
-                'name': $scope.name,
-                'role': $scope.role
+                'id': user.id,
+                'name': user.name,
+                'role': user.employee.role
             }
-        }).success(function(){
-            $route.reload();
         });
     };
 });

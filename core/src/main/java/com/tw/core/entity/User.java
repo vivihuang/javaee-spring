@@ -26,7 +26,7 @@ public class User {
     @Expose
     private String password;
 
-    @OneToOne(targetEntity = Employee.class,fetch = FetchType.LAZY)
+    @OneToOne(targetEntity = Employee.class,fetch = FetchType.EAGER)
     @JoinColumn(name = "employee_id")
     @Expose
     private Employee employee;

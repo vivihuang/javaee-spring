@@ -28,18 +28,17 @@
             <td class="update">{{user.name}}</td>
             <td class="update">{{user.employee.role}}</td>
             <td class="confirmUpdate" hidden="hidden">
-                <input type="text" value="{{user.name}}" ng-model="name"/></td>
+                <input type="text" ng-model="user.name"/></td>
             <td class="confirmUpdate" hidden="hidden">
-                <select>
-                    <option selected="selected" ng-model="role">请选择</option>
+                <select ng-model="user.employee.role">
                     <option>hr</option>
                     <option>op</option>
-                    <option>coach</option>
+                    <option selected="selected">coach</option>
                 </select></td>
             <td class="update"><a href ng-click="updateUser($event)">修改用户</a></td>
             <td class="confirmUpdate" hidden="hidden">
-                <a href ng-click="confirmUpdateUser($event,user.id)">确认修改</a></td>
-            <td><a href ng-click="deleteUser(user.id)">删除用户</a></td>
+                <a href ng-click="confirmUpdateUser(this,$event)">确认修改</a></td>
+            <td><a href ng-click="deleteUser($event,user.id)">删除用户</a></td>
         </tr>
     </table>
 </div>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@ResponseBody
 @RequestMapping(value = "/angular/user")
 public class AngularUserController {
     @Autowired
@@ -31,35 +32,33 @@ public class AngularUserController {
             .create();
 
     @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody
     public String getUsers(){
         return gson.toJson(userDao.getUsers());
     }
 
     @RequestMapping(method = RequestMethod.POST,produces= MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
     public void addUser(@RequestParam String name,
                           @RequestParam String password,
                           @RequestParam String role){
         Employee employee = employeeDao.addEmployee(name,role);
-        userDao.addUser(name,password,employee);
-        getUsers();
+        userDao.addUser(name, password, employee);
     }
 
     @RequestMapping(method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
     public void deleteUser(@RequestParam int id){
         userDao.deleteUser(id);
-        getUsers();
     }
 
     @RequestMapping(method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
     public void updateUser(@RequestParam int id,
                            @RequestParam String name,
                            @RequestParam String role){
-        userDao.updateAngularUser(id,name,role);
-        getUsers();
+        userDao.updateAngularUser(id, name, role);
+    }
+
+    @RequestMapping(value = "/employee",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getEmployees(){
+        return gson.toJson(userDao.getEmployees());
     }
 
 }

@@ -20,6 +20,8 @@ public class UserDao {
 
     @Autowired
     private User user;
+    @Autowired
+    private EmployeeDao employeeDao;
 
     private Configuration cfg = new Configuration().configure();
     private SessionFactory factory = cfg.buildSessionFactory();
@@ -166,7 +168,7 @@ public class UserDao {
     public void updateAngularUser(int id,String name,String role){
         user = getUserById(id);
         user.setName(name);
-        user.getEmployee().setRole(role);
+        employeeDao.updateEmployee(user.getEmployee(),name,role);
         Session session = null;
 
         try {

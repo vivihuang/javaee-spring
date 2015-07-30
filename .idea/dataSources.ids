@@ -12,16 +12,22 @@
       <column name="course_name" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
       <column name="employee_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FKintcymut7kvk3mnle6408xldf" columns="employee_id" ref-table="employee" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="course_ibfk_1" columns="employee_id" ref-table="employee" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FKqeam6e2yn5ika5onujvcxp1fl" table="date_course_customer" schema="" catalog="gym" columns="course_id"/>
       <exported-key name="date_course_customer_ibfk_1" table="date_course_customer" schema="" catalog="gym" columns="course_id"/>
+      <index name="FKintcymut7kvk3mnle6408xldf" unique="false" columns="employee_id"/>
     </table>
     <table name="customer" schema="" catalog="gym" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="customer_name" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
       <column name="employee_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FKiv4yye896nrvevqc0vpmmskmn" columns="employee_id" ref-table="employee" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="customer_ibfk_1" columns="employee_id" ref-table="employee" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FKhl4w426ug03t29rcyr61l7oyh" table="date_course_customer" schema="" catalog="gym" columns="customer_id"/>
       <exported-key name="date_course_customer_ibfk_2" table="date_course_customer" schema="" catalog="gym" columns="customer_id"/>
+      <index name="FKiv4yye896nrvevqc0vpmmskmn" unique="false" columns="employee_id"/>
     </table>
     <table name="date_course_customer" schema="" catalog="gym" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -29,25 +35,24 @@
       <column name="course_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="customer_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FKhl4w426ug03t29rcyr61l7oyh" columns="customer_id" ref-table="customer" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKqeam6e2yn5ika5onujvcxp1fl" columns="course_id" ref-table="course" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="date_course_customer_ibfk_1" columns="course_id" ref-table="course" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="date_course_customer_ibfk_2" columns="customer_id" ref-table="customer" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FKhl4w426ug03t29rcyr61l7oyh" unique="false" columns="customer_id"/>
+      <index name="FKqeam6e2yn5ika5onujvcxp1fl" unique="false" columns="course_id"/>
     </table>
     <table name="employee" schema="" catalog="gym" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="employee_name" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
       <column name="role" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FKintcymut7kvk3mnle6408xldf" table="course" schema="" catalog="gym" columns="employee_id"/>
       <exported-key name="course_ibfk_1" table="course" schema="" catalog="gym" columns="employee_id"/>
+      <exported-key name="FKiv4yye896nrvevqc0vpmmskmn" table="customer" schema="" catalog="gym" columns="employee_id"/>
       <exported-key name="customer_ibfk_1" table="customer" schema="" catalog="gym" columns="employee_id"/>
+      <exported-key name="FK8mq1okhrleyp04ejl7cbefgq9" table="user" schema="" catalog="gym" columns="employee_id"/>
       <exported-key name="user_ibfk_1" table="user" schema="" catalog="gym" columns="employee_id"/>
-    </table>
-    <table name="people" schema="" catalog="gym" type="TABLE">
-      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
-      <column name="sex" sqlType="VARCHAR" precision="2" scale="0" nullable="false" jdbcType="12"/>
-      <column name="email" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
-      <column name="age" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="schema_version" schema="" catalog="gym" type="TABLE">
       <column name="version_rank" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
@@ -72,7 +77,9 @@
       <column name="password" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
       <column name="employee_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK8mq1okhrleyp04ejl7cbefgq9" columns="employee_id" ref-table="employee" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="user_ibfk_1" columns="employee_id" ref-table="employee" ref-schema="" ref-catalog="gym" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK8mq1okhrleyp04ejl7cbefgq9" unique="false" columns="employee_id"/>
     </table>
   </data-source>
 </component>
