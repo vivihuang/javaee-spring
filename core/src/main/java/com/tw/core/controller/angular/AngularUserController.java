@@ -36,27 +36,28 @@ public class AngularUserController {
         return gson.toJson(userDao.getUsers());
     }
 
-    @RequestMapping(method = RequestMethod.POST,produces= MediaType.APPLICATION_JSON_VALUE)
-    public void addUser(@RequestParam String name,
+    @RequestMapping(method = RequestMethod.POST)
+    public String addUser(@RequestParam String name,
                           @RequestParam String password,
                           @RequestParam String role){
         Employee employee = employeeDao.addEmployee(name,role);
-        userDao.addUser(name, password, employee);
+        return gson.toJson(userDao.addAngularUser(name, password, employee));
     }
 
-    @RequestMapping(method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteUser(@RequestParam int id){
+    @RequestMapping(method = RequestMethod.DELETE)
+    public String deleteUser(@RequestParam int id){
         userDao.deleteUser(id);
+        return gson.toJson(userDao.getUserById(id));
     }
 
-    @RequestMapping(method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.PUT)
     public void updateUser(@RequestParam int id,
                            @RequestParam String name,
                            @RequestParam String role){
         userDao.updateAngularUser(id, name, role);
     }
 
-    @RequestMapping(value = "/employee",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/employee",method = RequestMethod.GET)
     public String getEmployees(){
         return gson.toJson(userDao.getEmployees());
     }

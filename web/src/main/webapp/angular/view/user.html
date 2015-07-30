@@ -8,27 +8,44 @@
 <div class="user">
     <ul class="welcome"><p>用户列表</p></ul>
     <table>
+        <thead>
         <tr>
             <td>用户名</td>
             <td>职务</td>
             <td colspan="2">操作</td>
         </tr>
+        </thead>
 
+        <tbody>
         <tr ng-repeat = "user in userList">
-            <td class="update">{{user.name}}</td>
-            <td class="update">{{user.employee.role}}</td>
-            <td class="confirmUpdate" hidden="hidden">
+            <td ng-hide="hide[$index]">{{user.name}}</td>
+            <td ng-hide="hide[$index]">{{user.employee.role}}</td>
+            <td ng-show="hide[$index]">
                 <input type="text" ng-model="user.name"/></td>
-            <td class="confirmUpdate" hidden="hidden">
+            <td ng-show="hide[$index]">
                 <select ng-model="user.employee.role">
                     <option>hr</option>
                     <option>op</option>
                     <option>coach</option>
                 </select></td>
-            <td class="update"><a href ng-click="updateUser($event)">修改用户</a></td>
-            <td class="confirmUpdate" hidden="hidden">
-                <a href ng-click="confirmUpdateUser(this,$event)">确认修改</a></td>
-            <td><a href ng-click="deleteUser($event,user.id)">删除用户</a></td>
+            <td ng-hide="hide[$index]"><a href ng-click="updateUser($index)">修改用户</a></td>
+            <td ng-show="hide[$index]">
+                <a href ng-click="confirmUpdateUser($index,$this)">确认修改</a></td>
+            <td><a href ng-click="deleteUser($index)">删除用户</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul class="welcome"><p>请增加用户</p></ul>
+    <table>
+        <tr><td>用户名：<input type="text" ng-model="name" /></td>
+            <td>密码：<input type="text" ng-model="password" /></td>
+            <td>职务：<select ng-model="role">
+                    <option>hr</option>
+                    <option>op</option>
+                    <option>coach</option>
+                </select></td>
+            <td><input type="button" value="提交" ng-click="addUser()" /></td>
         </tr>
     </table>
 </div>

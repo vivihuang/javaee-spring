@@ -15,7 +15,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handle) {
 
-        if (request.getServletPath().startsWith("/login")) {
+        if (request.getServletPath().startsWith("/angular/login")) {
             return true;
         }
 
@@ -27,7 +27,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             Cookie cookie = new Cookie("currentURL", request.getRequestURI().substring(4));
             cookie.setPath("/");
             response.addCookie(cookie);
-            response.sendRedirect("/web/login");
+            response.sendRedirect("/angular/login");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -184,4 +184,28 @@ public class UserDao {
             session.close();
         }
     }
+
+    public User addAngularUser(String name,String password,Employee employee){
+        Session session = null;
+        user.setName(name);
+        user.setPassword(password);
+        user.setEmployee(employee);
+        try {
+            session = factory.openSession();
+            session.beginTransaction();
+            session.save(user);
+            session.getTransaction().commit();
+        }catch (Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            if (session != null) {
+                if (session.isOpen()) {
+                    session.close();
+                }
+            }
+        }
+        return user;
+    }
 }
