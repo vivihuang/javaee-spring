@@ -1,5 +1,6 @@
 package com.tw.core.entity;
 
+import com.google.gson.annotations.Expose;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
@@ -16,13 +17,16 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
+    @Expose
     private int id;
 
     @Column(name = "course_name")
+    @Expose
     private String name;
 
     @ManyToOne(targetEntity = Coach.class,fetch=FetchType.LAZY)
     @JoinColumn(name="employee_id")//加入一列作为外键
+    @Expose
     private Coach coach;
 
     @ManyToMany(targetEntity = Customer.class,fetch = FetchType.LAZY)

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script>
+        $(function() {
+            $(".test").click(function(){
+                console.log("test");
+                $("#input").hide();
+            });
+        });
+
+    </script>
+</head>
+<body>
+<div class="user">
+    <ul class="welcome"><p>用户列表</p></ul>
+    <table>
+        <tr>
+            <td>用户名</td>
+            <td>职务</td>
+            <td colspan="2">操作</td>
+        </tr>
+
+        <tr ng-repeat = "user in userList">
+            <td class="update">{{user.name}}</td>
+            <td class="update">{{user.employee.role}}</td>
+            <td class="confirmUpdate" hidden="hidden">
+                <input type="text" ng-model="name"/></td>
+            <td class="confirmUpdate" hidden="hidden">
+                <select ng-model="role">
+                    <option selected="selected">请选择</option>
+                    <option>hr</option>
+                    <option>op</option>
+                    <option>coach</option>
+                </select></td>
+            <td class="update"><a href ng-click="updateUser($event)">修改用户</a></td>
+            <td class="confirmUpdate" hidden="hidden">
+                <a href ng-click="confirmUpdateUser($event,user.id)">确认修改</a></td>
+            <td><a href ng-click="deleteUser(user.id)">删除用户</a></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.tw.core.entity;
 
+import com.google.gson.annotations.Expose;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
@@ -17,12 +18,15 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
+    @Expose
     private int id;
 
     @Column(name = "employee_name")
+    @Expose
     private String name;
 
     @Column(name = "role")
+    @Expose
     private String role;
 
     public void setId(int id) {this.id = id;}

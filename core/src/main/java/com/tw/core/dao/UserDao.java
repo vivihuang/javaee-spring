@@ -162,4 +162,24 @@ public class UserDao {
         }
         return employeeList;
     }
+
+    public void updateAngularUser(int id,String name,String role){
+        user = getUserById(id);
+        user.setName(name);
+        user.getEmployee().setRole(role);
+        Session session = null;
+
+        try {
+            session = factory.openSession();
+            session.beginTransaction();
+            session.update(user);
+            session.getTransaction().commit();
+        }catch (Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            session.close();
+        }
+    }
 }

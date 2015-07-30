@@ -1,5 +1,6 @@
 package com.tw.core.entity;
 
+import com.google.gson.annotations.Expose;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
@@ -14,16 +15,20 @@ public class User {
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
+    @Expose
     private int id;
 
     @Column(name = "user_name")
+    @Expose
     private String name;
 
     @Column(name = "password")
+    @Expose
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(targetEntity = Employee.class,fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
+    @Expose
     private Employee employee;
 
     public User() {

@@ -8,15 +8,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link type="text/css" rel="stylesheet" href="/web/lib/css/navbar.css">
-<link type="text/css" rel="stylesheet" href="/web/lib/css/table.css">
-
 
 <html>
 <head>
+    <script language="JavaScript" src="/web/lib/js/jquery-1.11.1.min.js"></script>
+    <script src="/web/lib/js/angular.min.js"></script>
+    <script src="/web/lib/js/controller.js"></script>
+    <link type="text/css" rel="stylesheet" href="/web/lib/css/navbar.css">
+    <link type="text/css" rel="stylesheet" href="/web/lib/css/table.css">
+
     <title>健身房管理系统</title>
 </head>
 

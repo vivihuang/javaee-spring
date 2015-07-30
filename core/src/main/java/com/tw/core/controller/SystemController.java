@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Created by Vivi on 7/18/15.
  */
 @Controller
+@RequestMapping(value = "/")
 public class SystemController {
 
     @Autowired
@@ -20,7 +21,7 @@ public class SystemController {
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public ModelAndView welcomePage(){
-        modelAndView.setViewName("redirect:index");
+        modelAndView.setViewName("index");
         return modelAndView;
     }
 

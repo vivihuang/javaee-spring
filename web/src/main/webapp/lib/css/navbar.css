@@ -66,6 +66,8 @@ html {
 }
 
 .userManagement ul {
+    width: 200px;
+    height: 10px;
     display: none;
     position: absolute;
 }

@@ -1,14 +1,9 @@
 package com.tw.core.controller;
 
 import com.google.gson.Gson;
-import com.tw.core.dao.CoachDao;
-import com.tw.core.dao.CourseDao;
-import com.tw.core.dao.CustomerDao;
-import com.tw.core.dao.DateRelationDao;
-import com.tw.core.entity.Coach;
-import com.tw.core.entity.Course;
+import com.tw.core.dao.*;
+import com.tw.core.entity.*;
 import com.tw.core.service.CourseService;
-import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

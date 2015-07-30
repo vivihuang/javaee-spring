@@ -7,7 +7,7 @@ $(document).ready(function() {
         var tr= $(this).closest('tr');
         var options = tr.find("select").find("option");
         options.each(function () {
-            if ($(this).attr("value") == courseId) {
+            if ($(this).val() == courseId) {
                 $(this).attr("selected",true);
             }
         });
@@ -16,7 +16,6 @@ $(document).ready(function() {
     });
 
     $(".confirmUpdateButton").on('click',function(){
-        console.log("hi");
         var button = $(this);
         var tr = button.closest("tr");
         var courseName = tr.find("input#nameUpdateInput").val();
@@ -27,12 +26,11 @@ $(document).ready(function() {
             type: 'POST',
             data: {"id":courseId,"courseName":courseName,"coachId":coachId},
             dataType:"json",
-            success: function(data){
-                console.log(data);
+            success: function(course){
                 tr.find("td.update").show();
                 tr.find("td.confirmUpdate").hide();
-                //tr.find("td.update").find("#courseName").text(course.name);
-                //tr.find("td.update").find("#coachName").text(course.coach.name);
+                tr.find("td#courseName").text(course.name);
+                tr.find("td#coachName").text(course.coach.name);
             },
             error: function(data){
                 console.log(data);

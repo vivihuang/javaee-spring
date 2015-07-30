@@ -16,7 +16,6 @@ $(document).ready(function() {
     });
 
     $(".confirmUpdateButton").on('click',function(){
-        console.log("hi");
         var button = $(this);
         var tr = button.closest("tr");
         var courseName = tr.find("input#nameUpdateInput").val();
