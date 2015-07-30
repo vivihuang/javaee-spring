@@ -41,7 +41,8 @@ public class AngularUserController {
                           @RequestParam String password,
                           @RequestParam String role){
         Employee employee = employeeDao.addEmployee(name,role);
-        return gson.toJson(userDao.addAngularUser(name, password, employee));
+        User user = userDao.addAngularUser(name,password,employee);
+        return gson.toJson(user);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
@@ -51,10 +52,11 @@ public class AngularUserController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public void updateUser(@RequestParam int id,
+    public String updateUser(@RequestParam int id,
                            @RequestParam String name,
                            @RequestParam String role){
         userDao.updateAngularUser(id, name, role);
+        return gson.toJson(userDao.getUserById(id));
     }
 
     @RequestMapping(value = "/employee",method = RequestMethod.GET)

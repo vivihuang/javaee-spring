@@ -6,19 +6,26 @@ gymApp.controller('UserController',function($scope,$http){
     });
 
     $scope.hide=[];
+    $scope.updateName=[];
+    $scope.updateRole=[];
 
-    $scope.deleteUser = function(index,id){
+    $scope.deleteUser = function($index,id){
+
         $http({
             method: 'DELETE',
             url: '/web/angular/user',
             params: {'id': id}
         }).success(function(){
-            $scope.userList.splice(index,1);
+            $scope.userList.splice($index,1);
+        }).error(function(){
+            alert("删除操作失败，请重试。")
         });
     };
 
-    $scope.updateUser = function($index){
+    $scope.updateUser = function($index,$this){
         $scope.hide[$index]=true;
+        $scope.updateName[$index]=this.user.name;
+        $scope.updateRole[$index]=this.user.employee.role;
     };
 
     $scope.confirmUpdateUser = function($index,$this) {
@@ -28,14 +35,17 @@ gymApp.controller('UserController',function($scope,$http){
             url: '/web/angular/user',
             params: {
                 'id': this.user.id,
-                'name': this.user.name,
-                'role': this.user.employee.role
+                'name': $scope.updateName[$index],
+                'role': $scope.updateRole[$index]
             }
+        }).success(function(user){
+            $scope.userList[$index] = user;
+        }).error(function(){
+            alert("更新操作失败，请重试。");
         });
     };
 
     $scope.addUser = function() {
-        console.log($scope.name);
         $http({
             method: 'POST',
             url: '/web/angular/user',
@@ -45,10 +55,13 @@ gymApp.controller('UserController',function($scope,$http){
                 'role': $scope.role
             }
         }).success(function(user){
+            console.log(user);
             $scope.userList.push(user);
             $scope.name=null;
             $scope.password=null;
             $scope.role=null;
+        }).error(function(){
+            alert("增加操作失败，请重试。");
         });
     };
 });

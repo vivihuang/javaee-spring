@@ -29,7 +29,7 @@ html {
 
 .nav ul{
     width:850px;/*设置元素宽度为980px*/
-    height: 100px;
+    height: 80px;
     /*border:1px solid #000;/!*设置一个颜色为#000，宽度为1px的边框*!/*/
     margin: 0px auto 10px auto;
     display: inline-block;

@@ -9,8 +9,10 @@ table {
     width:700px;/*设置元素宽度为980px*/
     /*border:1px solid #000;/!*设置一个颜色为#000，宽度为1px的边框*!/*/
     margin: 0px auto 0px auto;
-    height: 200px;
+    height: auto;
     vertical-align: middle;
+    line-height: 30px;
+    font-size: 18px;
 }
 
 .welcome {

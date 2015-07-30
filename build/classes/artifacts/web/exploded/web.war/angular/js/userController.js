@@ -1,49 +1,49 @@
 'use strict';
 
-gymApp.controller('UserController',function($scope,$http,$route){
+gymApp.controller('UserController',function($scope,$http){
     $http.get('/web/angular/user').success(function(userList) {
         $scope.userList = userList;
     });
 
-    $scope.deleteUser = function(event,id){
-        var tr = $(event.target).parent().parent();
+    $scope.hide=[];
+    $scope.updateName=[];
+    $scope.updateRole=[];
+
+    $scope.deleteUser = function($index,id){
+
         $http({
             method: 'DELETE',
             url: '/web/angular/user',
             params: {'id': id}
         }).success(function(){
-            tr.remove();
+            $scope.userList.splice($index,1);
+        }).error(function(){
+            alert("删除操作失败，请重试。")
         });
     };
 
-    $scope.updateUser = function(event){
-        var tr = $(event.target).parent().parent();
-        tr.find("td.update").hide();
-        tr.find("td.confirmUpdate").show();
+    $scope.updateUser = function($index,$this){
+        $scope.hide[$index]=true;
+        $scope.updateName[$index]=this.user.name;
+        $scope.updateRole[$index]=this.user.employee.role;
     };
 
-    $scope.confirmUpdateUser = function($this,event) {
-        var tr = $(event.target).parent().parent();
-        tr.find("td.update").show();
-        tr.find("td.confirmUpdate").hide();
-        var user = this.user;
-
+    $scope.confirmUpdateUser = function($index,$this) {
+        $scope.hide[$index]=false;
         $http({
             method: 'PUT',
             url: '/web/angular/user',
             params: {
-                'id': user.id,
-                'name': user.name,
-                'role': user.employee.role
+                'id': this.user.id,
+                'name': $scope.updateName[$index],
+                'role': $scope.updateRole[$index]
             }
+        }).success(function(user){
+            $scope.userList[$index] = user;
+        }).error(function(){
+            alert("更新操作失败，请重试。");
         });
     };
-});
-
-gymApp.controller('AddUserController', function($http,$scope,$location){
-    $http.get('/web/angular/user').success(function(userList) {
-        $scope.userList = userList;
-    });
 
     $scope.addUser = function() {
         $http({
@@ -54,23 +54,38 @@ gymApp.controller('AddUserController', function($http,$scope,$location){
                 'password': $scope.password,
                 'role': $scope.role
             }
-        }).success(function(){
-            $location.path('/user')
+        }).success(function(user){
+            console.log(user);
+            $scope.userList.push(user);
+            $scope.name=null;
+            $scope.password=null;
+            $scope.role=null;
+        }).error(function(){
+            alert("增加操作失败，请重试。");
         });
     };
-
 });
 
-gymApp.controller('DeleteUserController', function($http,$scope,$location){
-    $http.get('/web/angular/user').success(function(userList){
-        $scope.userList = userList;
-    });
+//gymApp.controller('AddUserController', function($http,$scope,$location){
+//
+//    $scope.addUser = function() {
+//        $http({
+//            method: 'POST',
+//            url: '/web/angular/user',
+//            params: {
+//                'name': $scope.name,
+//                'password': $scope.password,
+//                'role': $scope.role
+//            }
+//        }).success(function(){
+//            $location.path('/user')
+//        });
+//    };
+//
+//});
 
-    $http({
-        method: 'DELETE',
-        url: '/web/angular/user',
-        params: {'id': $scope.id}
-    }).success(function() {
-        $location.path('/user')
+gymApp.controller('EmployeeController', function ($http,$scope) {
+    $http.get('/web/angular/user/employee').success(function(employeeList) {
+        $scope.employeeList = employeeList;
     });
 });

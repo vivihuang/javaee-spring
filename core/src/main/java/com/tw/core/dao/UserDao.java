@@ -185,7 +185,7 @@ public class UserDao {
         }
     }
 
-    public User addAngularUser(String name,String password,Employee employee){
+    public User addAngularUser(String name,String password,Employee employee) {
         Session session = null;
         user.setName(name);
         user.setPassword(password);
@@ -195,7 +195,7 @@ public class UserDao {
             session.beginTransaction();
             session.save(user);
             session.getTransaction().commit();
-        }catch (Exception e) {
+        } catch (Exception e) {
             //Handle errors for Class.forName
             e.printStackTrace();
         } finally {
@@ -206,6 +206,21 @@ public class UserDao {
                 }
             }
         }
-        return user;
+        return getUserByEmployee(employee);
+    }
+
+    public User getUserByEmployee(Employee employee){
+        Session session = null;
+
+        try {
+            session=factory.openSession();
+            String sql = "SELECT * FROM user WHERE employee_id="+employee.getId();
+            userList = session.createSQLQuery(sql).addEntity(User.class).list();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+        return userList.get(0);
     }
 }

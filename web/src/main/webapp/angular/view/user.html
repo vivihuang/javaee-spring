@@ -21,17 +21,17 @@
             <td ng-hide="hide[$index]">{{user.name}}</td>
             <td ng-hide="hide[$index]">{{user.employee.role}}</td>
             <td ng-show="hide[$index]">
-                <input type="text" ng-model="user.name"/></td>
+                <input type="text" ng-model="updateName[$index]"/></td>
             <td ng-show="hide[$index]">
-                <select ng-model="user.employee.role">
+                <select ng-model="updateRole[$index]">
                     <option>hr</option>
                     <option>op</option>
                     <option>coach</option>
                 </select></td>
-            <td ng-hide="hide[$index]"><a href ng-click="updateUser($index)">修改用户</a></td>
+            <td ng-hide="hide[$index]"><a href ng-click="updateUser($index,$this)">修改用户</a></td>
             <td ng-show="hide[$index]">
                 <a href ng-click="confirmUpdateUser($index,$this)">确认修改</a></td>
-            <td><a href ng-click="deleteUser($index)">删除用户</a></td>
+            <td><a href ng-click="deleteUser($index,user.id)">删除用户</a></td>
         </tr>
         </tbody>
     </table>
@@ -45,7 +45,7 @@
                     <option>op</option>
                     <option>coach</option>
                 </select></td>
-            <td><input type="button" value="提交" ng-click="addUser()" /></td>
+            <td><a href ng-click="addUser()" >增加用户</a></td>
         </tr>
     </table>
 </div>
