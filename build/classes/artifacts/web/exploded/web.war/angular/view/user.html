@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="user">
-    <ul class="welcome"><p>用户列表</p></ul>
+    <ul class="welcome">用户列表</ul>
     <table>
         <thead>
         <tr>
@@ -28,15 +28,14 @@
                     <option>op</option>
                     <option>coach</option>
                 </select></td>
-            <td ng-hide="hide[$index]"><a href ng-click="updateUser($index,$this)">修改用户</a></td>
-            <td ng-show="hide[$index]">
-                <a href ng-click="confirmUpdateUser($index,$this)">确认修改</a></td>
+            <td ng-hide="hide[$index]"><a href ng-click="updateUser($index)">修改用户</a></td>
+            <td ng-show="hide[$index]"><a href ng-click="confirmUpdateUser($index)">确认修改</a></td>
             <td><a href ng-click="deleteUser($index,user.id)">删除用户</a></td>
         </tr>
         </tbody>
     </table>
 
-    <ul class="welcome"><p>请增加用户</p></ul>
+    <ul class="welcome">请增加用户</ul>
     <table>
         <tr><td>用户名：<input type="text" ng-model="name" /></td>
             <td>密码：<input type="text" ng-model="password" /></td>

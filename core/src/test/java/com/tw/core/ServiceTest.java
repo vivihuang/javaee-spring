@@ -11,4 +11,9 @@ public class ServiceTest {
     public void test() throws Exception {
         assertEquals(1,1);
     }
+
+    @Test
+    public void addOperation(){
+
+    }
 }

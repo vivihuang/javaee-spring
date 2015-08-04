@@ -22,13 +22,13 @@ gymApp.controller('UserController',function($scope,$http){
         });
     };
 
-    $scope.updateUser = function($index,$this){
+    $scope.updateUser = function($index){
         $scope.hide[$index]=true;
         $scope.updateName[$index]=this.user.name;
         $scope.updateRole[$index]=this.user.employee.role;
     };
 
-    $scope.confirmUpdateUser = function($index,$this) {
+    $scope.confirmUpdateUser = function($index) {
         $scope.hide[$index]=false;
         $http({
             method: 'PUT',

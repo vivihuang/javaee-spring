@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <ul class="welcome">课程安排</ul>
+    <table>
+        <thead>
+        <tr>
+            <td>日期</td>
+            <td>课程</td>
+            <td>教练</td>
+            <td>顾客</td>
+            <td colspan="2">操作</td>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="item in courseArrangementList">
+            <td ng-hide="hide[$index]">{{item.date}}</td>
+            <td ng-show="hide[$index]"><input type="date" placeholder="yyyy-MM-dd" required ng-model="updateDate[$index]"/></td>
+            <td ng-hide="hide[$index]">{{item.course.name}}</td>
+            <td ng-show="hide[$index]">
+                <select ng-options="course.name for course in courseList track by course.id" ng-model="updateCourse[$index]">
+                </select></td>
+            <td ng-hide="hide[$index]">{{item.course.coach.name}}</td>
+            <td ng-show="hide[$index]"><input type="text" readonly ng-model="updateCourse[$index].coach.name"/></td>
+            <td ng-hide="hide[$index]">{{item.customer.name}}</td>
+            <td ng-show="hide[$index]">
+                <select ng-options="customer.name for customer in customerList track by customer.id" ng-model="updateCustomer[$index]">
+                </select></td>
+            <td ng-hide="hide[$index]"><a href ng-click="updateCourseArrangement($index)">修改排课</a></td>
+            <td ng-show="hide[$index]"><a href ng-click="confirmUpdateCourseArrangement($index)">确认修改</a></td>
+            <td><a href ng-click="deleteCourseArrangement($index)">删除排课</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul class="welcome">请增加排课</ul>
+    <table>
+        <tr><td>日期：<input type="date" placeholder="yyyy-MM-dd" required ng-model="newDate" /></td>
+            <td>课程：<select ng-options="course.name for course in courseList" ng-model="newCourse"></select></td>
+            <td>教练：<input type="text" readonly ng-model="newCourse.coach.name" /></td>
+            <td>顾客：<select ng-options="customer.name for customer in customerList" ng-model="newCustomer">
+                <option></option>
+            </select></td>
+            <td><a href ng-click="addCourseArrangement()" >增加排课</a></td>
+        </tr>
+    </table>
+</div>
+
+
+</body>
+</html>

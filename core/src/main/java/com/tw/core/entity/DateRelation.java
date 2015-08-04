@@ -1,5 +1,6 @@
 package com.tw.core.entity;
 
+import com.google.gson.annotations.Expose;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
@@ -15,17 +16,21 @@ public class DateRelation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
+    @Expose
     private int id;
 
     @Column(name = "date")
+    @Expose
     private Date date;
 
     @OneToOne(targetEntity = Course.class,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
+    @Expose
     private Course course;
 
     @OneToOne(targetEntity = Customer.class,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
+    @Expose
     private Customer customer;
 
     public void setDateRelation(Date date,Course course,Customer customer) {

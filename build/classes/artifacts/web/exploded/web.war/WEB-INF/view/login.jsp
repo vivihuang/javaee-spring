@@ -28,7 +28,7 @@
     <form method="POST" action="/web/login" name="login">
         <ul>用户：<input class="input" name="inputName" type="text" size="20" />
             </ul>
-        <ul>密码：<input class="input" name="inputPassword" type="text" size="20"/>
+        <ul>密码：<input class="input" name="inputPassword" type="password" size="20"/>
             </ul>
         <ul><input class="submit" type="submit" value="登录"/>
             </ul>

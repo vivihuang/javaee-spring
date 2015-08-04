@@ -22,13 +22,13 @@ gymApp.controller('UserController',function($scope,$http){
         });
     };
 
-    $scope.updateUser = function($index,$this){
+    $scope.updateUser = function($index){
         $scope.hide[$index]=true;
         $scope.updateName[$index]=this.user.name;
         $scope.updateRole[$index]=this.user.employee.role;
     };
 
-    $scope.confirmUpdateUser = function($index,$this) {
+    $scope.confirmUpdateUser = function($index) {
         $scope.hide[$index]=false;
         $http({
             method: 'PUT',
@@ -66,23 +66,23 @@ gymApp.controller('UserController',function($scope,$http){
     };
 });
 
-//gymApp.controller('AddUserController', function($http,$scope,$location){
-//
-//    $scope.addUser = function() {
-//        $http({
-//            method: 'POST',
-//            url: '/web/angular/user',
-//            params: {
-//                'name': $scope.name,
-//                'password': $scope.password,
-//                'role': $scope.role
-//            }
-//        }).success(function(){
-//            $location.path('/user')
-//        });
-//    };
-//
-//});
+gymApp.controller('AddUserController', function($http,$scope,$location){
+
+    $scope.addUser = function() {
+        $http({
+            method: 'POST',
+            url: '/web/angular/user',
+            params: {
+                'name': $scope.name,
+                'password': $scope.password,
+                'role': $scope.role
+            }
+        }).success(function(){
+            $location.path('/user')
+        });
+    };
+
+});
 
 gymApp.controller('EmployeeController', function ($http,$scope) {
     $http.get('/web/angular/user/employee').success(function(employeeList) {

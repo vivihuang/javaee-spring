@@ -31,6 +31,7 @@ public class Coach{
 
     @OneToMany(targetEntity = Customer.class,fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
+    @Expose
     private List<Customer> customerList = new ArrayList<Customer>();
 
     public Coach() {

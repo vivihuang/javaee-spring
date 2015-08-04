@@ -28,6 +28,12 @@ public class DateRelationDao {
     private Coach coach;
     @Autowired
     private Course course;
+    @Autowired
+    private CourseDao courseDao;
+    @Autowired
+    private Customer customer;
+    @Autowired
+    private CustomerDao customerDao;
 
     private Configuration cfg = new Configuration().configure();
     private SessionFactory factory = cfg.buildSessionFactory();
@@ -176,5 +182,66 @@ public class DateRelationDao {
             session.close();
         }
         return dateRelationList;
+    }
+
+    public DateRelation updateCourseArrangement(int id,String dateString,String courseId,String customerId){
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        try {
+            date = sdf.parse(dateString);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        dateRelation = getCourseArrangementById(id);
+        if (customerId!=null) {
+            customer = customerDao.getCustomerById(Integer.parseInt(customerId));
+        }
+        else {
+            customer=null;
+        }
+        course = courseDao.getCourseById(Integer.parseInt(courseId));
+        dateRelation.setDateRelation(date, course, customer);
+        Session session = null;
+        try {
+            session = factory.openSession();
+            session.beginTransaction();
+            session.update(dateRelation);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return dateRelation;
+    }
+
+    public DateRelation addAngularCourseArrangementByDate(String dateString,String courseId,String customerId){
+        course = courseDao.getCourseById(Integer.parseInt(courseId));
+        if (customerId != null) {
+            customer = customerDao.getCustomerById(Integer.parseInt(customerId));
+        }
+        else {
+            customer = null;
+        }
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        try {
+            date = sdf.parse(dateString);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        dateRelation.setDateRelation(date,course,customer);
+        Session session = null;
+        try {
+            session = factory.openSession();
+            session.beginTransaction();
+            session.save(dateRelation);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return dateRelation;
     }
 }
