@@ -17,7 +17,7 @@ dependencies {
 
 flyway {
     driver = 'com.mysql.jdbc.Driver'
-    url = 'jdbc:mysql://localhost:3306/gym'
+    url = 'jdbc:mysql://localhost:3306/gym';'jdbc:mysql://localhost:3306/test'
     user = 'root'
     password = ''
     baselineOnMigrate = true

@@ -29,6 +29,11 @@ public class Employee {
     @Expose
     private String role;
 
+    public Employee(String name, String role) {
+        this.name = name;
+        this.role = role;
+    }
+
     public void setId(int id) {this.id = id;}
 
     public int getId(){

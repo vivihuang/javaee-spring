@@ -7,5 +7,11 @@
       <schema-pattern>gym.*</schema-pattern>
       <default-schemas>gym.*</default-schemas>
     </data-source>
+    <data-source name="test@localhost" uuid="06b96ca2-257a-4f3e-be2a-9560711cea31">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>test.*</schema-pattern>
+      <default-schemas>test.*</default-schemas>
+    </data-source>
   </component>
 </project>

@@ -19,6 +19,8 @@ subprojects {
         compile 'jstl:jstl:1.2'
         compile 'org.json:json:20141113'
         compile 'com.google.code.gson:gson:2.3.1'
+        compile 'org.springframework:spring-test:4.0.5.RELEASE'
+        compile 'org.springframework:spring-tx:4.2.0.RELEASE'
 
     }
 
