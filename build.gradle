@@ -17,12 +17,18 @@ subprojects {
         compile 'jstl:jstl:1.2'
         compile 'org.json:json:20141113'
         compile 'com.google.code.gson:gson:2.3.1'
+<<<<<<< HEAD
         testCompile 'org.springframework:spring-test:4.2.0.RELEASE'
         compile 'org.springframework:spring-jdbc:4.2.0.RELEASE'
         compile 'org.springframework:spring-orm:4.2.0.RELEASE'
         compile 'org.springframework:spring-webmvc:4.1.7.RELEASE'
         compile 'org.springframework:spring-context:4.2.0.RELEASE'
         compile 'org.springframework:spring-tx:4.2.0.RELEASE'
+=======
+        compile 'org.springframework:spring-test:4.0.5.RELEASE'
+        compile 'org.springframework:spring-tx:4.2.0.RELEASE'
+
+>>>>>>> 15ab896f161c25a2eb285a6bcec33f9953ff9d8f
     }
 }
 
