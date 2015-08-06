@@ -34,6 +34,9 @@ public class Employee {
         this.role = role;
     }
 
+    public Employee() {
+    }
+
     public void setId(int id) {this.id = id;}
 
     public int getId(){
