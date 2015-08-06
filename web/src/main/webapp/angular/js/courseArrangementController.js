@@ -24,6 +24,7 @@ gymApp.controller('CourseArrangementController',function($scope,$http){
     $scope.updateCustomer=[];
 
     $scope.deleteCourseArrangement = function($index){
+        console.log(this.item.id);
         $http({
             method: 'DELETE',
             url: '/web/angular/courseArrangement',

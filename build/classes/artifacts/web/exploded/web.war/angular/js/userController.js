@@ -10,7 +10,7 @@ gymApp.controller('UserController',function($scope,$http){
     $scope.updateRole=[];
 
     $scope.deleteUser = function($index,id){
-
+        console.log(id);
         $http({
             method: 'DELETE',
             url: '/web/angular/user',

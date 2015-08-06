@@ -8,11 +8,13 @@ import com.tw.core.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @ResponseBody
 @RequestMapping(value = "/angular/user")
+@Transactional
 public class AngularUserController {
     @Autowired
     UserDao userDao;
@@ -46,9 +48,8 @@ public class AngularUserController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
-    public String deleteUser(@RequestParam int id){
+    public void deleteUser(@RequestParam int id){
         userDao.deleteUser(id);
-        return gson.toJson(userDao.getUserById(id));
     }
 
     @RequestMapping(method = RequestMethod.PUT)

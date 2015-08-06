@@ -45,9 +45,8 @@ public class AngularCourseArrangementController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
-    public String deleteCourseArrangementList(@RequestParam String id){
+    public void deleteCourseArrangementList(@RequestParam String id){
         dateRelationDao.deleteCourseArrangement(Integer.parseInt(id));
-        return gson.toJson(dateRelationDao.getCourseArrangementById(Integer.parseInt(id)));
     }
 
     @RequestMapping(method = RequestMethod.PUT)

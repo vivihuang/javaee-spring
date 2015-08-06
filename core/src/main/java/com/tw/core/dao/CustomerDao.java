@@ -1,14 +1,12 @@
 package com.tw.core.dao;
 
-import com.tw.core.entity.Coach;
-import com.tw.core.entity.Course;
 import com.tw.core.entity.Customer;
-import com.tw.core.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,58 +14,35 @@ import java.util.List;
 /**
  * Created by Vivi on 7/17/15.
  */
-@Service
+@Repository
+@Transactional
 public class CustomerDao {
-
+    @Autowired
+    private SessionFactory sessionFactory;
     @Autowired
     private Customer customer;
-
     @Autowired
     private CoachDao coachDao;
 
-    private Configuration cfg = new Configuration().configure();
-    private SessionFactory factory = cfg.buildSessionFactory();
     private List<Customer> customerList = new ArrayList<Customer>();
 
     public Customer getCustomerById(int id) {
-        Session session = null;
-        try {
-            session = factory.openSession();
-            String sql = "SELECT * from customer WHERE id="+id;
-            customerList = session.createSQLQuery(sql).addEntity(Customer.class).list();
-            customer = customerList.get(0);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (session != null) {
-                if (session.isOpen()) {
-                    session.close();
-                }
-            }
-        }
+        Session session = sessionFactory.getCurrentSession();
+        String sql = "SELECT * from customer WHERE id="+id;
+        customerList = session.createSQLQuery(sql).addEntity(Customer.class).list();
+        customer = customerList.get(0);
         return customer;
     }
 
     public List<Customer> getCustomers(){
-        Session session = null;
-        try {
-            session = factory.openSession();
-            String sql = "SELECT * from customer";
-            customerList = session.createSQLQuery(sql).addEntity(Customer.class).list();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (session != null) {
-                if (session.isOpen()) {
-                    session.close();
-                }
-            }
-        }
+        Session session = sessionFactory.getCurrentSession();
+        String sql = "SELECT * from customer";
+        customerList = session.createSQLQuery(sql).addEntity(Customer.class).list();
         return customerList;
     }
 
     public void addCustomer(String customerName,String coachId){
-        Session session = null;
+        Session session = sessionFactory.getCurrentSession();
         if (coachId=="null") {
             customer.setCoach(null);
         }
@@ -76,65 +51,22 @@ public class CustomerDao {
         }
         customer.setName(customerName);
 
-        try {
-            session = factory.openSession();
-            session.beginTransaction();
-            session.save(customer);
-            session.getTransaction().commit();
-        }catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (session != null) {
-                if (session.isOpen()) {
-                    session.close();
-                }
-            }
-        }
+        session.save(customer);
     }
 
     public void updateCustomer(String customerId,String customerName,String coachId) {
-        Session session = null;
         customer = getCustomerById(Integer.parseInt(customerId));
         customer.setName(customerName);
         customer.setCoach(coachDao.getCoachById(Integer.parseInt(coachId)));
 
-        try {
-            session = factory.openSession();
-            session.beginTransaction();
-            session.update(customer);
-            session.getTransaction().commit();
-        }catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (session != null) {
-                if (session.isOpen()) {
-                    session.close();
-                }
-            }
-        }
+        Session session = sessionFactory.getCurrentSession();
+        session.update(customer);
     }
 
     public void deleteCustomer(String customerId) {
-        Session session = null;
-
-        try {
-            session = factory.openSession();
-            session.beginTransaction();
-
-            customer.setId(Integer.parseInt(customerId));
-            session.delete(customer);
-            session.getTransaction().commit();
-        }catch (Exception e) {
-            //Handle errors for Class.forName
-            e.printStackTrace();
-        } finally {
-            //finally block used to close resources
-            if (session != null) {
-                if (session.isOpen()) {
-                    session.close();
-                }
-            }
-        }
+        Session session = sessionFactory.getCurrentSession();
+        customer.setId(Integer.parseInt(customerId));
+        session.delete(customer);
     }
 
 }

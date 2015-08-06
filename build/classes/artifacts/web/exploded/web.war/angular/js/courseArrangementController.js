@@ -24,6 +24,7 @@ gymApp.controller('CourseArrangementController',function($scope,$http){
     $scope.updateCustomer=[];
 
     $scope.deleteCourseArrangement = function($index){
+        console.log(this.item.id);
         $http({
             method: 'DELETE',
             url: '/web/angular/courseArrangement',
@@ -44,6 +45,8 @@ gymApp.controller('CourseArrangementController',function($scope,$http){
 
     $scope.confirmUpdateCourseArrangement = function($index){
         var courseArrangement = this.item;
+        var updateCustomerId = null;
+        if ($scope.updateCustomer[$index] != null) {updateCustomerId = $scope.updateCustomer[$index].id;}
         $http({
             method:'PUT',
             url:'/web/angular/courseArrangement',
@@ -51,7 +54,7 @@ gymApp.controller('CourseArrangementController',function($scope,$http){
                 'id':courseArrangement.id,
                 'date': $scope.updateDate[$index],
                 'courseId': $scope.updateCourse[$index].id,
-                'customerId': $scope.updateCustomer[$index].id
+                'customerId': updateCustomerId
             }
         }).success(function(courseArrangement){
             $scope.courseArrangementList[$index] = courseArrangement;
