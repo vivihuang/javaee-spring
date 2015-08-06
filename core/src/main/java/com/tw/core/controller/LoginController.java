@@ -21,8 +21,8 @@ public class LoginController {
 
     @Autowired
     private LoginService loginService;
-    @Autowired
-    private UserDao userDao;
+//    @Autowired
+//    private UserDao userDao;
 
 
     ModelAndView modelAndView = new ModelAndView();

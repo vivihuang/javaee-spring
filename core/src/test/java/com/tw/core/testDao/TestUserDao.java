@@ -12,21 +12,21 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Created by Vivi on 8/6/15.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@Transactional
-@ContextConfiguration(locations = {"classpath*:applicationContext.xml"})
-public class TestUserDao {
-    @Autowired
-    private UserDao userDao;
-    @BeforeClass
-    public static void setSystemProperty() {
-        System.setProperty("spring.profiles.active", "test");
-    }
-
-    @Test
-    public void testGetEmployees(){
-
-    }
-
-
-}
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@Transactional
+//@ContextConfiguration(locations = {"classpath*:applicationContext.xml"})
+//public class TestUserDao {
+//    @Autowired
+//    private UserDao userDao;
+//    @BeforeClass
+//    public static void setSystemProperty() {
+//        System.setProperty("spring.profiles.active", "test");
+//    }
+//
+//    @Test
+//    public void testGetEmployees(){
+//
+//    }
+//
+//
+//}
